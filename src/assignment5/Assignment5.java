@@ -34,7 +34,9 @@
 *	"High Card".
 *
 *   Classes:
-*       None
+*       Phase I - None
+*       Phase II -
+*           CardTable extends JFrame
 *
 *   Parameters:
 *       1. none
