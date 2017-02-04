@@ -60,6 +60,9 @@ public class Card
     {
         clubs, diamonds, hearts, spades;
     }
+    
+    public static char[]valuRanks = { 'A', '2', '3', '4', '5', '6', '7', '8',
+        '9', 'T', 'J', 'Q', 'K', 'X' };
 
     // private data members
     private char value;
@@ -140,14 +143,20 @@ public class Card
     private boolean isValid(char value, Suit suit)
     {
         if ((value >= '2' && value <= '9')
-                || value == 'T' || value == 't'
                 || value == 'A' || value == 'a'
+                || value == 'T' || value == 't'
                 || value == 'J' || value == 'j'
+                || value == 'Q' || value == 'q'
                 || value == 'K' || value == 'k'
-                || value == 'Q' || value == 'q')
+                || value == 'X' || value == 'x')
         {
             return true;
         }
         return false;
+    }
+    
+    static void arraySort( Card[], int arraySize )
+    {
+        
     }
 }

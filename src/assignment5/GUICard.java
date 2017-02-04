@@ -54,6 +54,7 @@ package assignment5;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.util.Arrays;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -107,6 +108,20 @@ public class GUICard
     
     static public Icon getIcon(Card card)
     {
-        return new ImageIcon("images/BK.gif");
+        char[] cardValues = { 'A', '2', '3', '4', '5', '6', '7', '8', '9',
+            'T', 'J', 'Q', 'K', 'X' };
+        int cardValue = Arrays.binarySearch(cardValues, card.getValue());
+        int cardSuit;
+        
+        if (card.getSuit() == Card.Suit.clubs)
+            cardSuit = 0;
+        else if (card.getSuit() == Card.Suit.diamonds)
+            cardSuit = 1;
+        else if (card.getSuit() == Card.Suit.hearts)
+            cardSuit = 2;
+        else
+            cardSuit = 3;
+        
+        return iconCards[cardValue][cardSuit];
     }
 }
