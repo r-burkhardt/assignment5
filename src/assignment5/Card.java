@@ -155,7 +155,7 @@ public class Card
         return false;
     }
     
-    static void arraySort( Card[], int arraySize )
+    public static void arraySort( Card[] cards, int arraySize )
     {
         
     }
