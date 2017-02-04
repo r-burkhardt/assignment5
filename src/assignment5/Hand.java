@@ -52,61 +52,87 @@
 
 package assignment5;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
-
-
-public class GUICard
+public class Hand
 {
-    private static Icon[][] iconCards = new ImageIcon[14][4]; // 14 = A thru K + joker
-    private static Icon iconBack;
-    static boolean iconsLoaded = false;
-    
-    static void loadCardIcons()
+
+    public static int MAX_CARDS = 50;
+    private Card[] myCards;
+    private int numCards;
+
+    // Default Constructor
+    public Hand()
     {
-        // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
-        // in a SHORT loop.  For each file name, read it in and use it to
-        // instantiate each of the 57 Icons in the icon[] array.
-        int count = 0;
-        for (int j = 0; j < 4; j++)
+        myCards = new Card[MAX_CARDS];
+        numCards = 0;
+    }
+
+    // Method that removes all cards from the Hand[] array
+    public void resetHand()
+    {
+        myCards = new Card[MAX_CARDS];
+        numCards = 0;
+    }
+
+    // This method adds cards to the next available position
+    public boolean takeCard(Card card)
+    {
+        if (numCards >= MAX_CARDS)
         {
-            for (int i = 0; i < 14; i++)
+            return false;
+        }
+        else
+        {
+            myCards[numCards++] = card;
+            //numCards++;
+            return true;
+        }
+    }
+
+    // This method returns and removes the card in the top position of the array
+    public Card playCard()
+    {
+        Card card = myCards[numCards - 1];
+        myCards[numCards - 1] = null;
+        return card;
+    }
+
+    // This method is a stringizer that is used prior to displaying the entire hand
+    public String toString()
+    {
+        String str = "Hand = ( ";
+        if (numCards == 0)
+        {
+            str += "empty hand )";
+        }
+        else
+        {
+            for (int i = 0; i < numCards - 1; i++)
             {
-                String file = "images/" + turnIntIntoCardValue(i) +
-                        turnIntIntoCardSuit(j) + ".gif";
-                iconCards[i][j] = new ImageIcon(file);
+                str += myCards[i] + ", ";
             }
+            str += myCards[numCards - 1] + " )";
         }
+        return str;
     }
 
-    // turns 0 - 14 into "A", "2", "3", ... "Q", "K", "X"
-    static String turnIntIntoCardValue(int k)
+    // Getter for numCards
+    public int getNumCards()
     {
-        String[] cardValues = { "A", "2", "3", "4", "5", "6", "7", "8",
-            "9", "T", "J", "Q", "K", "X" };
-        if (k >=0 && k<= 13)
-        {
-            return cardValues[k];
-        }
-        return "";
+        return numCards;
     }
 
-    // turns 0 - 3 into "C", "D", "H", "S"
-    static String turnIntIntoCardSuit(int j)
+    // Accessor to inspect an individual card, returns erroFlag = true if k is bad
+    public Card inspectCard(int k)
     {
-        String[] suites = { "C", "D", "H", "S" };
-        if (j >=0 && j<= 3)
+        Card card;
+        if (k <= numCards)
         {
-            return suites[j];
+            card = new Card('T', Card.Suit.spades);
         }
-        return "";
-    }
-    
-    static public Icon getIcon(Card card)
-    {
-        return new ImageIcon("images/BK.gif");
+        else
+        {
+            card = myCards[k - 1];
+        }
+        return card;
     }
 }

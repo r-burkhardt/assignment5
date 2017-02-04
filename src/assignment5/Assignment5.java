@@ -70,7 +70,7 @@ public class Assignment5
     static final int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
     static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
 
-    static void loadCardIcons()
+    /*static void loadCardIcons()
     {
         // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
         // in a SHORT loop.  For each file name, read it in and use it to
@@ -109,12 +109,12 @@ public class Assignment5
             return suites[j];
         }
         return "";
-    }
+    }*/
 
     // a simple main to throw all the JLabels out there for the world to see
     public static void main(String[] args)
     {
-        int k;
+        /*int k;
 
         // prepare the image icon array
         loadCardIcons();
@@ -144,7 +144,7 @@ public class Assignment5
         }
 
         // show everything to the user
-        frmMyWindow.setVisible(true);
+        frmMyWindow.setVisible(true);*/
     }
 
 }

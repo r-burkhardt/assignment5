@@ -52,6 +52,7 @@
 
 package assignment5;
 
+import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -64,4 +65,22 @@ public class CardTable extends JFrame
     private int numPlayers;
 
     public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea;
+
+    public CardTable(String title, int numCardsPerHand, int numPlayers)
+    {
+        super(title);
+        this.numCardsPerHand = numCardsPerHand;
+        this.numPlayers = numPlayers;
+    }
+    
+    public int getNumCardsPerHand()
+    {
+        return this.numCardsPerHand;
+    }
+    
+    public int getNumPlayers()
+    {
+        return this.numPlayers;
+    }
+    
 }
