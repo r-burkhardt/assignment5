@@ -57,7 +57,7 @@ import java.util.Random;
 public class Deck
 {
 
-    public final int MAX_CARDS = 336; // max 6 decks of 54 cards
+    public final int MAX_CARDS = 336; // max 6 decks of 56 cards
 
     private static Card[] masterPack;
     private Card[] cards;
@@ -95,15 +95,15 @@ public class Deck
     {
         allocateMasterPack();
         this.numPacks = numPacks;
-        this.topCard = (54 * this.numPacks) - 1;
+        this.topCard = (56 * this.numPacks) - 1;
 
-        cards = new Card[54 * numPacks];
+        cards = new Card[56 * numPacks];
 
         for (int pack = 0; pack < numPacks; pack++)
         {
             for (int card = 0; card < masterPack.length; card++)
             {
-                cards[(54 * pack) + card] = masterPack[card];
+                cards[(56 * pack) + card] = masterPack[card];
             }
         }
     }
@@ -114,7 +114,7 @@ public class Deck
     {
         int split = cards.length / 2;
         Random rand = new Random();
-        int shufCount = 5 * (54 * numPacks);
+        int shufCount = 5 * (56 * numPacks);
 
         do
         {
@@ -197,7 +197,7 @@ public class Deck
                             newCard = new Card('K', s);
                             break;
                         case 14:
-                            newCard = new Card('K', s);
+                            newCard = new Card('X', s);
                             break;
                         default:
                             newCard = new Card(Integer.toString(value).charAt(0), s);
@@ -237,7 +237,7 @@ public class Deck
     
     public void sort()
     {
-        
+        Card.arraySort(cards, (numPacks*56));
     }
     
     public int getNumCards()

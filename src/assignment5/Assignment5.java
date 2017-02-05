@@ -55,6 +55,7 @@
 package assignment5;
 
 import java.awt.FlowLayout;
+import java.util.Arrays;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -114,6 +115,49 @@ public class Assignment5
     // a simple main to throw all the JLabels out there for the world to see
     public static void main(String[] args)
     {
+        Card card0 = new Card('A', Card.Suit.hearts);
+        Card card1 = new Card('2', Card.Suit.hearts);
+        Card card2 = new Card('3', Card.Suit.hearts);
+        Card card3 = new Card('4', Card.Suit.hearts);
+        Card card4 = new Card('5', Card.Suit.hearts);
+        Card card5 = new Card('6', Card.Suit.hearts);
+        Card card6 = new Card('7', Card.Suit.hearts);
+        Card card7 = new Card('8', Card.Suit.hearts);
+        Card card8 = new Card('9', Card.Suit.hearts);
+        Card card9 = new Card('T', Card.Suit.hearts);
+        Card card10 = new Card('J', Card.Suit.hearts);
+        Card card11 = new Card('Q', Card.Suit.hearts);
+        Card card12 = new Card('K', Card.Suit.hearts);
+        Card card13 = new Card('X', Card.Suit.hearts);
+        
+        //System.out.println((card1.getSuit()).compareTo(card2.getSuit()));
+        
+        Deck test = new Deck();
+        
+        test.shuffle();
+        test.sort();
+        
+        System.out.println(card0.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card0.getValue()));
+        System.out.println(card1.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card1.getValue()));
+        System.out.println(card2.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card2.getValue()));
+        System.out.println(card3.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card3.getValue()));
+        System.out.println(card4.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card4.getValue()));
+        System.out.println(card5.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card5.getValue()));
+        System.out.println(card6.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card6.getValue()));
+        System.out.println(card7.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card7.getValue()));
+        System.out.println(card8.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card8.getValue()));
+        System.out.println(card9.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card9.getValue()));
+        System.out.println(card10.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card10.getValue()));
+        System.out.println(card11.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card11.getValue()));
+        System.out.println(card12.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card12.getValue()));
+        System.out.println(card13.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card13.getValue()));
+        System.out.println(Card.valuRanks[9] == card9.getValue());
+        
+        /*while (test.getTopCard() != 0)
+        {            
+            System.out.println(test.dealCard());
+        }*/
+        
         /*int k;
 
         // prepare the image icon array

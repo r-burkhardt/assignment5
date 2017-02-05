@@ -52,6 +52,8 @@
 
 package assignment5;
 
+import java.util.Arrays;
+
 public class Card
 {
     // Suit enum of possible suits for cards
@@ -61,8 +63,8 @@ public class Card
         clubs, diamonds, hearts, spades;
     }
     
-    public static char[]valuRanks = { 'A', '2', '3', '4', '5', '6', '7', '8',
-        '9', 'T', 'J', 'Q', 'K', 'X' };
+    public static char[]valuRanks = {'A', '2', '3', '4', '5', '6', '7', '8',
+        '9', 'T', 'J', 'Q', 'K', 'X'};
 
     // private data members
     private char value;
@@ -79,7 +81,7 @@ public class Card
     // calls on set() method to set the values
     public Card(char value, Suit suit)
     {
-        set(value, suit);
+        set(Character.toUpperCase(value), suit);
     }
 
     // if no errors, returns a string with the card value and suit
@@ -143,12 +145,9 @@ public class Card
     private boolean isValid(char value, Suit suit)
     {
         if ((value >= '2' && value <= '9')
-                || value == 'A' || value == 'a'
-                || value == 'T' || value == 't'
-                || value == 'J' || value == 'j'
-                || value == 'Q' || value == 'q'
-                || value == 'K' || value == 'k'
-                || value == 'X' || value == 'x')
+                || value == 'A' || value == 'T'
+                || value == 'J' || value == 'Q'
+                || value == 'K' || value == 'X')
         {
             return true;
         }
@@ -157,6 +156,42 @@ public class Card
     
     public static void arraySort( Card[] cards, int arraySize )
     {
+        Card temp;
+        boolean sorted = true;
+        while (sorted)
+        {
+            sorted = false;
+            for (int i = 0; i < cards.length-1; i++)
+            {
+                //System.out.println((cards[i].suit).compareTo(cards[i+1].suit));
+                if (0 > (cards[i].suit).compareTo(cards[i+1].suit))
+                {
+                    temp = cards[i];
+                    cards[i] = cards[i+1];
+                    cards[i+1] = temp;
+                    sorted = true;
+                }
+                else if (0 == (cards[i].suit).compareTo(cards[i+1].suit))
+                {
+                    //boolean test = Arrays.binarySearch(valuRanks, cards[i].value) < Arrays.binarySearch(valuRanks, cards[i+1].value);
+                    /*System.out.println(cards[i].value + "  "
+                            + Arrays.binarySearch(valuRanks, cards[i].value)
+                            + "  " 
+                            + test + "  "
+                            + Arrays.binarySearch(valuRanks, cards[i+1].value) + "  " 
+                            + cards[i+1].value);*/
+                    //System.out.println(Arrays.binarySearch(valuRanks, cards[i].value));
+                    if (Arrays.binarySearch(valuRanks, cards[i].value) < 
+                            Arrays.binarySearch(valuRanks, cards[i+1].value))
+                    {
+                        temp = cards[i];
+                        cards[i] = cards[i+1];
+                        cards[i+1] = temp;
+                        sorted = true;
+                    }
+                }
+            }
+        }
         
     }
 }
