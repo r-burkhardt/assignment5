@@ -132,12 +132,12 @@ public class Assignment5
         
         //System.out.println((card1.getSuit()).compareTo(card2.getSuit()));
         
-        Deck test = new Deck();
+        Deck test = new Deck(2);
         
         test.shuffle();
         test.sort();
         
-        System.out.println(card0.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card0.getValue()));
+        /*System.out.println(card0.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card0.getValue()));
         System.out.println(card1.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card1.getValue()));
         System.out.println(card2.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card2.getValue()));
         System.out.println(card3.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card3.getValue()));
@@ -151,12 +151,35 @@ public class Assignment5
         System.out.println(card11.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card11.getValue()));
         System.out.println(card12.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card12.getValue()));
         System.out.println(card13.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card13.getValue()));
-        System.out.println(Card.valuRanks[9] == card9.getValue());
+        System.out.println(Card.valuRanks[9] == card9.getValue());*/
         
-        /*while (test.getTopCard() != 0)
+        
+        System.out.println("number of cards in deck " + test.getNumCards());
+        
+        test.removeCard(card10);
+        test.removeCard(card7);
+        test.removeCard(card8);
+        test.removeCard(card3);
+        test.removeCard(card0);
+        
+        System.out.println("topcard after 5 removed " + test.getTopCard());
+        System.out.println("number of cards in deck " + test.getNumCards());
+        //test.sort();
+        
+        test.addCard(card8);
+        test.addCard(card3);
+        test.addCard(card0);
+        
+        System.out.println("topcard after 3 added " + test.getTopCard());        
+        System.out.println("number of cards in deck " + test.getNumCards());
+        
+        while (test.getTopCard() >= 0)
         {            
             System.out.println(test.dealCard());
-        }*/
+            //test.dealCard();
+        }
+        
+        System.out.println("number of cards in deck " + test.getNumCards());
         
         /*int k;
 

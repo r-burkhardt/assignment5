@@ -138,6 +138,6 @@ public class Hand
     
     public void sort()
     {
-        
+        Card.arraySort(myCards, numCards);
     }
 }

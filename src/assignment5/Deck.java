@@ -135,10 +135,15 @@ public class Deck
     // member to the next card in the deck.
     public Card dealCard()
     {
-        Card retVal = cards[topCard];
-        cards[topCard] = null;
-        if (topCard > 0)
+        Card retVal;
+        if (topCard < 0)
         {
+            retVal = new Card('B', Card.Suit.clubs);
+        }
+        else
+        {
+            retVal = cards[topCard];
+            cards[topCard] = null;
             topCard--;
         }
         return retVal;
@@ -227,12 +232,33 @@ public class Deck
     
     public boolean addCard( Card card )
     {
+        int count = 0;
+        for (int i = 0; i <= topCard; i++)
+            if (cards[i].equals(card))
+                count++;
+        if (count > numPacks)
+            return false;
+        topCard++;
+        cards[topCard] = card;
         return true;
     }
     
     public boolean removeCard( Card card )
     {
-        return true;
+        for (int i = topCard; i >= 0; i--)
+        {
+            if (cards[i].equals(card))
+            {
+                if (i != topCard)
+                {
+                    cards[i] = cards[topCard];
+                }
+                cards[topCard] = null;
+                topCard--;
+                return true;
+            }
+        }
+        return false;
     }
     
     public void sort()
@@ -242,7 +268,11 @@ public class Deck
     
     public int getNumCards()
     {
-        return 0;
+        int cardCount = 0;
+        for (Card single : cards)
+            if (single != null)
+                cardCount++;
+        return cardCount;
     }
     
 }

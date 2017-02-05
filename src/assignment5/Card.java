@@ -163,7 +163,6 @@ public class Card
             sorted = false;
             for (int i = 0; i < cards.length-1; i++)
             {
-                //System.out.println((cards[i].suit).compareTo(cards[i+1].suit));
                 if (0 > (cards[i].suit).compareTo(cards[i+1].suit))
                 {
                     temp = cards[i];
@@ -173,14 +172,6 @@ public class Card
                 }
                 else if (0 == (cards[i].suit).compareTo(cards[i+1].suit))
                 {
-                    //boolean test = Arrays.binarySearch(valuRanks, cards[i].value) < Arrays.binarySearch(valuRanks, cards[i+1].value);
-                    /*System.out.println(cards[i].value + "  "
-                            + Arrays.binarySearch(valuRanks, cards[i].value)
-                            + "  " 
-                            + test + "  "
-                            + Arrays.binarySearch(valuRanks, cards[i+1].value) + "  " 
-                            + cards[i+1].value);*/
-                    //System.out.println(Arrays.binarySearch(valuRanks, cards[i].value));
                     if (Arrays.binarySearch(valuRanks, cards[i].value) < 
                             Arrays.binarySearch(valuRanks, cards[i+1].value))
                     {
@@ -192,6 +183,10 @@ public class Card
                 }
             }
         }
-        
+    }
+    
+    private boolean compareCards( Card[] cards)
+    {
+        return true;
     }
 }
