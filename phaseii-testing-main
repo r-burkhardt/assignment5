@@ -1,0 +1,121 @@
+// static for the 57 icons and their corresponding labels
+    // normally we would not have a separate label for each card, but
+    // if we want to display all at once using labels, we need to.
+
+    //static final int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
+    //static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
+
+    // a simple main to throw all the JLabels out there for the world to see
+    /*public static void main(String[] args)
+    {
+        Card card0 = new Card('A', Card.Suit.hearts);
+        Card card1 = new Card('2', Card.Suit.hearts);
+        Card card2 = new Card('3', Card.Suit.hearts);
+        Card card3 = new Card('4', Card.Suit.hearts);
+        Card card4 = new Card('5', Card.Suit.hearts);
+        Card card5 = new Card('6', Card.Suit.hearts);
+        Card card6 = new Card('7', Card.Suit.hearts);
+        Card card7 = new Card('8', Card.Suit.hearts);
+        Card card8 = new Card('9', Card.Suit.hearts);
+        Card card9 = new Card('T', Card.Suit.hearts);
+        Card card10 = new Card('J', Card.Suit.hearts);
+        Card card11 = new Card('Q', Card.Suit.hearts);
+        Card card12 = new Card('K', Card.Suit.hearts);
+        Card card13 = new Card('X', Card.Suit.hearts);
+        
+        //System.out.println((card1.getSuit()).compareTo(card2.getSuit()));
+        int numPacks = 2;
+        Deck test = new Deck(numPacks);
+        
+        test.shuffle();
+        test.sort();
+        
+        /*System.out.println(card0.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card0.getValue()));
+        System.out.println(card1.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card1.getValue()));
+        System.out.println(card2.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card2.getValue()));
+        System.out.println(card3.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card3.getValue()));
+        System.out.println(card4.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card4.getValue()));
+        System.out.println(card5.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card5.getValue()));
+        System.out.println(card6.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card6.getValue()));
+        System.out.println(card7.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card7.getValue()));
+        System.out.println(card8.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card8.getValue()));
+        System.out.println(card9.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card9.getValue()));
+        System.out.println(card10.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card10.getValue()));
+        System.out.println(card11.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card11.getValue()));
+        System.out.println(card12.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card12.getValue()));
+        System.out.println(card13.getValue() + "  " + Arrays.binarySearch(Card.valuRanks, card13.getValue()));
+        System.out.println(Card.valuRanks[9] == card9.getValue());
+        
+        
+        System.out.println("number of cards in deck " + test.getNumCards());
+        
+        test.removeCard(card10);
+        test.removeCard(card7);
+        test.removeCard(card8);
+        test.removeCard(card3);
+        test.removeCard(card0);
+        
+        System.out.println("topcard after 5 removed " + test.getTopCard());
+        System.out.println("number of cards in deck " + test.getNumCards());
+        //test.sort();
+        
+        test.addCard(card8);
+        test.addCard(card3);
+        test.addCard(card0);
+        
+        System.out.println("topcard after 3 added " + test.getTopCard());        
+        System.out.println("number of cards in deck " + test.getNumCards());
+        
+        while (test.getTopCard() >= 0)
+        {            
+            System.out.println(test.dealCard());
+            //test.dealCard();
+        }
+        
+        System.out.println("number of cards in deck " + test.getNumCards());
+        System.out.println("");
+        System.out.println("");
+        
+        while (test.getTopCard() < 28)
+        {
+            test.addCard(generateRandomCard());
+        }
+        
+        while (test.getTopCard() >= 0)
+        {            
+            System.out.println(test.dealCard());
+            //test.dealCard();
+        }
+        
+        /*int k;
+
+        // prepare the image icon array
+        loadCardIcons();
+
+        // establish main frame in which program will run
+        JFrame frmMyWindow = new JFrame("Card Room");
+        frmMyWindow.setSize(1150, 650);
+        frmMyWindow.setLocationRelativeTo(null);
+        frmMyWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // set up layout which will control placement of buttons, etc.
+        FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 5, 20);
+        frmMyWindow.setLayout(layout);
+
+        // prepare the image label array
+        JLabel[] labels = new JLabel[NUM_CARD_IMAGES];
+        for (k = 0; k < NUM_CARD_IMAGES; k++)
+        {
+            labels[k] = new JLabel(icon[k]);
+        }
+
+        // place your 3 controls into frame
+        for (k = 0; k < NUM_CARD_IMAGES; k++)
+        {
+            System.out.println(k);
+            frmMyWindow.add(labels[k]);
+        }
+
+        // show everything to the user
+        frmMyWindow.setVisible(true);
+    }*/
