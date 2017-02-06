@@ -75,6 +75,7 @@ public class Assignment5
         int k;
         Icon tempIcon;
         Deck testDeck = new Deck(2);
+        testDeck.shuffle();
         testDeck.sort();
 
         // establish main frame in which program will run
@@ -92,15 +93,15 @@ public class Assignment5
         {
             computerLabels[k] = new JLabel(GUICard.getBackCardIcon(),
                     JLabel.CENTER );
-            humanLabels[k] = new JLabel(  GUICard.getIcon(testDeck.dealCard()),
+            humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
                     JLabel.CENTER );
         }
 
         for (k = 0; k < NUM_PLAYERS; k++)
         {
-            playedCardLabels[k] = new JLabel( GUICard.getIcon(testDeck.dealCard()),
+            playedCardLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
                     JLabel.CENTER );
-            if (k % NUM_PLAYERS == 0)
+            if ( k % NUM_PLAYERS == 0 )
             {
                 playedCardLabels[k] = new JLabel( "Computer", JLabel.CENTER );
             }

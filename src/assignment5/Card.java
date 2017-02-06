@@ -63,8 +63,8 @@ public class Card
         clubs, diamonds, hearts, spades;
     }
     
-    public static char[]valuRanks = {'A', '2', '3', '4', '5', '6', '7', '8',
-        '9', 'T', 'J', 'Q', 'K', 'X'};
+    public static char[]valuRanks = { 'A', '2', '3', '4', '5', '6', '7', '8',
+        '9', 'T', 'J', 'Q', 'K', 'X' };
 
     // private data members
     private char value;
@@ -163,30 +163,95 @@ public class Card
             sorted = false;
             for (int i = 0; i < cards.length-1; i++)
             {
-                if (0 > (cards[i].suit).compareTo(cards[i+1].suit))
+                
+                if (suitAsInt(cards[i]) > suitAsInt(cards[i+1]))
                 {
+                    //System.out.println( cards[i].getSuit() + "/"+ suitAsInt(cards[i])
+                    //    + " ? " 
+                    //    + cards[i+1].getSuit() + "/" + suitAsInt(cards[i+1]) );
                     temp = cards[i];
                     cards[i] = cards[i+1];
                     cards[i+1] = temp;
                     sorted = true;
+                    //System.err.println( cards[i].getSuit() + "/"+ suitAsInt(cards[i])
+                    //    + " ? " 
+                    //    + cards[i+1].getSuit() + "/" + suitAsInt(cards[i+1]) );
                 }
-                else if (0 == (cards[i].suit).compareTo(cards[i+1].suit))
+                else
                 {
-                    if (Arrays.binarySearch(valuRanks, cards[i].value) < 
-                            Arrays.binarySearch(valuRanks, cards[i+1].value))
+                    System.out.println( suitAsInt(cards[i]) + valueAsInt(cards[i])
+                            + " / "
+                            + suitAsInt(cards[i+1]) + valueAsInt(cards[i+1]) );
+                    if ( valueAsInt(cards[i]) < valueAsInt(cards[i+1]))
                     {
                         temp = cards[i];
                         cards[i] = cards[i+1];
                         cards[i+1] = temp;
                         sorted = true;
                     }
+                    System.err.println( suitAsInt(cards[i]) + valueAsInt(cards[i])
+                            + " / "
+                            + suitAsInt(cards[i+1]) + valueAsInt(cards[i+1]) );
                 }
             }
         }
     }
     
-    private boolean compareCards( Card[] cards)
+    private boolean compareCards( Card[] cards )
     {
         return true;
+    }
+    
+    public static int valueAsInt(Card card)
+    {
+        /*int retVal = 0;
+        for ( int i = 0; i < valuRanks.length; i++ )
+        if ( valuRanks[i] == card.getValue() )
+        retVal = i;
+        return retVal;*/
+        char testValue = card.value;
+        switch ((char)testValue)
+        {
+            case 'A':
+                return 0;
+            case '2':
+                return 1;
+            case '3':
+                return 2;
+            case '4':
+                return 3;
+            case '5':
+                return 4;
+            case '6':
+                return 5;
+            case '7':
+                return 6;
+            case '8':
+                return 7;
+            case '9':
+                return 8;
+            case 'T':
+                return 9;
+            case 'J':
+                return 10;
+            case 'Q':
+                return 11;
+            case 'K':
+                return 12;
+            default:
+                return 13;
+        }
+    }
+    
+    public static int suitAsInt(Card card)
+    {
+        if (card.suit == Suit.clubs)
+            return 0;
+        else if (card.suit == Suit.diamonds)
+            return 1;
+        else if (card.suit == Suit.hearts)
+            return 2;
+        else 
+            return 3;
     }
 }
