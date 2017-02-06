@@ -108,9 +108,7 @@ public class GUICard
     
     static public Icon getIcon(Card card)
     {
-        char[] cardValues = { 'A', '2', '3', '4', '5', '6', '7', '8', '9',
-            'T', 'J', 'Q', 'K', 'X' };
-        int cardValue = Arrays.binarySearch(cardValues, card.getValue());
+        int cardValue = Arrays.binarySearch(Card.valuRanks, card.getValue());
         int cardSuit;
         
         if (card.getSuit() == Card.Suit.clubs)

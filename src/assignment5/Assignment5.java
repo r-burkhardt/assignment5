@@ -89,7 +89,10 @@ public class Assignment5
       myCardTable.setVisible(true);
 
       // CREATE LABELS ----------------------------------------------------
-      ///code goes here ...
+      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+      {
+         //computerLabels[k] = new JLabel("", tempIcon, JLabel.CENTER);
+      }
   
       // ADD LABELS TO PANELS -----------------------------------------
       ///code goes here ...
@@ -103,7 +106,6 @@ public class Assignment5
     
     static Card generateRandomCard()
     {
-        
         Card.Suit newSuit;
         char newValue;
         
