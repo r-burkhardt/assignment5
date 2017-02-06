@@ -122,4 +122,9 @@ public class GUICard
         
         return iconCards[cardValue][cardSuit];
     }
+    
+    static public Icon getBackCardIcon()
+    {
+        return iconBack;
+    }
 }

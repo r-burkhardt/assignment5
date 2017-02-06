@@ -50,8 +50,6 @@
 *       Faiga Revah, Oswaldo Minez, Roderick Burkhardt
 *
 * ==================================================================*/
-
-
 package assignment5;
 
 import java.awt.FlowLayout;
@@ -62,7 +60,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
 public class Assignment5
 {
 
@@ -71,44 +68,76 @@ public class Assignment5
     static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
     static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
-    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS]; 
-    
+    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
+
     public static void main(String[] args)
-   {
-      int k;
-      Icon tempIcon;
-      
-      // establish main frame in which program will run
-      CardTable myCardTable 
-         = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
-      myCardTable.setSize(800, 600);
-      myCardTable.setLocationRelativeTo(null);
-      myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    {
+        int k;
+        Icon tempIcon;
+        Deck testDeck = new Deck(2);
+        testDeck.sort();
 
-      // show everything to the user
-      myCardTable.setVisible(true);
+        // establish main frame in which program will run
+        CardTable myCardTable
+                = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
+        myCardTable.setSize(800, 600);
+        myCardTable.setLocationRelativeTo(null);
+        myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-      // CREATE LABELS ----------------------------------------------------
-      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-      {
-         //computerLabels[k] = new JLabel("", tempIcon, JLabel.CENTER);
-      }
-  
-      // ADD LABELS TO PANELS -----------------------------------------
-      ///code goes here ...
-      
-      // and two random cards in the play region (simulating a computer/hum ply)
-      ///code goes here ...
+        // show everything to the user
+        myCardTable.setVisible(true);
 
-      // show everything to the user
-      myCardTable.setVisible(true);
-   }
-    
+        // CREATE LABELS ----------------------------------------------------
+        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+        {
+            computerLabels[k] = new JLabel(GUICard.getBackCardIcon(),
+                    JLabel.CENTER );
+            humanLabels[k] = new JLabel(  GUICard.getIcon(testDeck.dealCard()),
+                    JLabel.CENTER );
+        }
+
+        for (k = 0; k < NUM_PLAYERS; k++)
+        {
+            playedCardLabels[k] = new JLabel( GUICard.getIcon(testDeck.dealCard()),
+                    JLabel.CENTER );
+            if (k % NUM_PLAYERS == 0)
+            {
+                playedCardLabels[k] = new JLabel( "Computer", JLabel.CENTER );
+            }
+            else
+            {
+                String temp = "Player " + k;
+                playedCardLabels[k] = new JLabel( temp, JLabel.CENTER );
+            }
+        }
+
+        // ADD LABELS TO PANELS -----------------------------------------
+        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+        {
+            myCardTable.pnlComputerHand.add(computerLabels[k]);
+            myCardTable.pnlHumanHand.add(humanLabels[k]);
+        }
+        
+        for (k = 0; k < NUM_PLAYERS; k++)
+        {
+            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+        }
+        
+        myCardTable.add(myCardTable.pnlComputerHand);
+        myCardTable.add(myCardTable.pnlPlayArea);
+        myCardTable.add(myCardTable.pnlHumanHand);
+        // and two random cards in the play region (simulating a computer/hum ply)
+        ///code goes here ...
+        // show everything to the user
+        myCardTable.setVisible(true);
+    }
+
     static Card generateRandomCard()
     {
         Card.Suit newSuit;
         char newValue;
-        
+
         Random rand = new Random();
         int randNum = rand.nextInt(14);
         newValue = Card.valuRanks[randNum];
@@ -126,10 +155,9 @@ public class Assignment5
             default:
                 newSuit = Card.Suit.spades;
         }
-        
+
         return new Card(newValue, newSuit);
-        
-        
+
     }
 
 }
