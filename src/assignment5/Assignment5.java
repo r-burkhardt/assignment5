@@ -88,6 +88,7 @@ public class Assignment5
         // show everything to the user
         myCardTable.setVisible(true);
         
+
         // CREATE LABELS ----------------------------------------------------
 //        GUICard.loadCardIcons();
 //        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
