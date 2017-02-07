@@ -36,7 +36,7 @@
 *   Classes:
 *       Phase I - None
 *       Phase II -
-*           CardTable extends JFrame
+*           CardTable extends JFrame, GUICard, Card, Hand, Deck
 *
 *   Parameters:
 *       1. none
