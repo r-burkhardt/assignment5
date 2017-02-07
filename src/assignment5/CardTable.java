@@ -71,8 +71,10 @@ public class CardTable extends JFrame
     public CardTable(String title, int numCardsPerHand, int numPlayers)
     {
         super(title);
-        this.numCardsPerHand = numCardsPerHand;
-        this.numPlayers = numPlayers;
+        if (numCardsPerHand <= MAX_CARDS_PER_HAND)
+            this.numCardsPerHand = numCardsPerHand;
+        if (numPlayers <= MAX_PLAYERS)
+            this.numPlayers = numPlayers;
         
         frameInit();
         this.setLayout( new GridLayout(3, 1) );

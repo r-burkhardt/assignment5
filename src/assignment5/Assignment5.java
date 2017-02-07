@@ -77,7 +77,6 @@ public class Assignment5
     {
         int k;
         Icon tempIcon;
-        Deck testDeck = new Deck();
 
         // establish main frame in which program will run
         CardTable myCardTable
@@ -88,48 +87,11 @@ public class Assignment5
 
         // show everything to the user
         myCardTable.setVisible(true);
-
-        
-        
-        /*// CREATE LABELS ----------------------------------------------------
-      for(k = 0; k < NUM_CARDS_PER_HAND; k++)
-         humanLabels[k] = new JLabel(GUICard.getIcon(generateRandomCard()));
-
-      for(k = 0; k < NUM_CARDS_PER_HAND; k++)
-         computerLabels[k] = new JLabel(GUICard.getBackCardIcon());
-
-
-      // ADD LABELS TO PANELS -----------------------------------------
-      for(k = 0; k < NUM_CARDS_PER_HAND; k++)
-         myCardTable.pnlHumanHand.add(humanLabels[k]);
-
-      for(k = 0; k < NUM_CARDS_PER_HAND; k++)
-         myCardTable.pnlComputerHand.add(computerLabels[k]);
-
-      // and two random cards in the play region (simulating a computer/hum ply)
-      for(k = 0; k < NUM_PLAYERS; k++)
-         playedCardLabels[k] = new JLabel(GUICard.getIcon(
-               generateRandomCard()));
-
-      playLabelText[0] = new JLabel("Computer", 0);
-      playLabelText[1] = new JLabel("You", 0);
-
-      //Adding cards to the play area panel.
-      for(k = 0; k < NUM_PLAYERS; k++)
-      {
-         myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-         //myCardTable.pnlPlayArea.add(playLabelText[k]);
-      }
-      //Adding lables to the play area panel under the cards.
-      myCardTable.pnlPlayArea.add(playLabelText[0]);
-      myCardTable.pnlPlayArea.add(playLabelText[1]);*/
-        
-        
         
         // CREATE LABELS ----------------------------------------------------
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
-            computerLabels[k] = new JLabel(GUICard.getBackCardIcon(),
+            computerLabels[k] = new JLabel( GUICard.getBackCardIcon(),
                     JLabel.CENTER );
             humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
                     JLabel.CENTER );
@@ -162,9 +124,6 @@ public class Assignment5
             myCardTable.pnlPlayArea.add(playedCardLabels[k]);
         }
         
-        myCardTable.getContentPane().add(myCardTable.pnlComputerHand);
-        myCardTable.getContentPane().add(myCardTable.pnlPlayArea);
-        myCardTable.getContentPane().add(myCardTable.pnlHumanHand);
         // and two random cards in the play region (simulating a computer/hum ply)
         ///code goes here ...
         // show everything to the user
