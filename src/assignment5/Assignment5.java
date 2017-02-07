@@ -89,6 +89,7 @@ public class Assignment5
         myCardTable.setVisible(true);
         
         // CREATE LABELS ----------------------------------------------------
+        GUICard.loadCardIcons();
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon(),
@@ -103,12 +104,12 @@ public class Assignment5
                     JLabel.CENTER );
             if ( k % NUM_PLAYERS == 0 )
             {
-                playedCardLabels[k] = new JLabel( "Computer", JLabel.CENTER );
+                playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
             }
             else
             {
                 String temp = "Player " + k;
-                playedCardLabels[k] = new JLabel( temp, JLabel.CENTER );
+                playLabelText[k] = new JLabel( temp, JLabel.CENTER );
             }
         }
 
@@ -120,9 +121,9 @@ public class Assignment5
         }
         
         for (k = 0; k < NUM_PLAYERS; k++)
-        {
             myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-        }
+        for (k = 0; k < NUM_PLAYERS; k++)
+            myCardTable.pnlPlayArea.add(playLabelText[k]);
         
         // and two random cards in the play region (simulating a computer/hum ply)
         ///code goes here ...

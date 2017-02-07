@@ -71,15 +71,20 @@ public class GUICard
         // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
         // in a SHORT loop.  For each file name, read it in and use it to
         // instantiate each of the 57 Icons in the icon[] array.
-        int count = 0;
-        for (int j = 0; j < 4; j++)
+        if (!iconsLoaded)
         {
-            for (int i = 0; i < 14; i++)
+            int count = 0;
+            for (int j = 0; j < 4; j++)
             {
-                String file = "images/" + turnIntIntoCardValue(i) +
-                        turnIntIntoCardSuit(j) + ".gif";
-                iconCards[i][j] = new ImageIcon(file);
+                for (int i = 0; i < 14; i++)
+                {
+                    String file = "images/" + turnIntIntoCardValue(i) +
+                            turnIntIntoCardSuit(j) + ".gif";
+                    iconCards[i][j] = new ImageIcon(file);
+                }
             }
+            iconBack = new ImageIcon("images/BK.gif");
+            iconsLoaded = true;
         }
     }
 
@@ -107,19 +112,7 @@ public class GUICard
     }
     
     static public Icon getIcon(Card card)
-    {
-//        int cardValue = Arrays.binarySearch(Card.valuRanks, card.getValue());
-//        int cardSuit;
-//        
-//        if (card.getSuit() == Card.Suit.clubs)
-//            cardSuit = 0;
-//        else if (card.getSuit() == Card.Suit.diamonds)
-//            cardSuit = 1;
-//        else if (card.getSuit() == Card.Suit.hearts)
-//            cardSuit = 2;
-//        else
-//            cardSuit = 3;
-        
+    {        
         return iconCards[Card.valueAsInt(card)][Card.suitAsInt(card)];
     }
     
