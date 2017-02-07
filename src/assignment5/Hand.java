@@ -92,8 +92,17 @@ public class Hand
     public Card playCard()
     {
         Card card = myCards[numCards - 1];
-        myCards[numCards - 1] = null;
+        myCards[--numCards] = null;
         return card;
+    }
+    
+    public Card playCard(int cardIndex)
+    {
+        Card card = myCards[cardIndex];
+        for(int i = cardIndex; i < numCards - 1; i++)
+            myCards[i] = myCards[i + 1];
+        myCards[--numCards] = null;
+        return card; 
     }
 
     // This method is a stringizer that is used prior to displaying the entire hand
