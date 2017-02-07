@@ -89,41 +89,41 @@ public class Assignment5
         myCardTable.setVisible(true);
         
         // CREATE LABELS ----------------------------------------------------
-        GUICard.loadCardIcons();
-        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-        {
-            computerLabels[k] = new JLabel( GUICard.getBackCardIcon(),
-                    JLabel.CENTER );
-            humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
-                    JLabel.CENTER );
-        }
-
-        for (k = 0; k < NUM_PLAYERS; k++)
-        {
-            playedCardLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
-                    JLabel.CENTER );
-            if ( k % NUM_PLAYERS == 0 )
-            {
-                playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
-            }
-            else
-            {
-                String temp = "Player " + k;
-                playLabelText[k] = new JLabel( temp, JLabel.CENTER );
-            }
-        }
-
-        // ADD LABELS TO PANELS -----------------------------------------
-        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-        {
-            myCardTable.pnlComputerHand.add(computerLabels[k]);
-            myCardTable.pnlHumanHand.add(humanLabels[k]);
-        }
-        
-        for (k = 0; k < NUM_PLAYERS; k++)
-            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-        for (k = 0; k < NUM_PLAYERS; k++)
-            myCardTable.pnlPlayArea.add(playLabelText[k]);
+//        GUICard.loadCardIcons();
+//        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+//        {
+//            computerLabels[k] = new JLabel( GUICard.getBackCardIcon(),
+//                    JLabel.CENTER );
+//            humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
+//                    JLabel.CENTER );
+//        }
+//
+//        for (k = 0; k < NUM_PLAYERS; k++)
+//        {
+//            playedCardLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
+//                    JLabel.CENTER );
+//            if ( k % NUM_PLAYERS == 0 )
+//            {
+//                playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
+//            }
+//            else
+//            {
+//                String temp = "Player " + k;
+//                playLabelText[k] = new JLabel( temp, JLabel.CENTER );
+//            }
+//        }
+//
+//        // ADD LABELS TO PANELS -----------------------------------------
+//        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+//        {
+//            myCardTable.pnlComputerHand.add(computerLabels[k]);
+//            myCardTable.pnlHumanHand.add(humanLabels[k]);
+//        }
+//        
+//        for (k = 0; k < NUM_PLAYERS; k++)
+//            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+//        for (k = 0; k < NUM_PLAYERS; k++)
+//            myCardTable.pnlPlayArea.add(playLabelText[k]);
         
         // and two random cards in the play region (simulating a computer/hum ply)
         ///code goes here ...

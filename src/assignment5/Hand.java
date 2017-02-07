@@ -82,8 +82,7 @@ public class Hand
         }
         else
         {
-            myCards[numCards++] = card;
-            //numCards++;
+            myCards[numCards++] = new Card(card.getValue(), card.getSuit());
             return true;
         }
     }
