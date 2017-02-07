@@ -52,6 +52,8 @@
 
 package assignment5;
 
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,6 +73,17 @@ public class CardTable extends JFrame
         super(title);
         this.numCardsPerHand = numCardsPerHand;
         this.numPlayers = numPlayers;
+        
+        frameInit();
+        this.setLayout( new GridLayout(3, 1) );
+        
+        pnlComputerHand = new JPanel( new GridLayout( 1, numCardsPerHand ) );
+        pnlPlayArea = new JPanel( new GridLayout( 2, 2 ) );
+        pnlHumanHand = new JPanel( new GridLayout( 1, numCardsPerHand ) );
+        
+        this.add( pnlComputerHand );
+        this.add( pnlPlayArea );
+        this.add( pnlHumanHand );
     }
     
     public int getNumCardsPerHand()

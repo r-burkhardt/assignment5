@@ -108,19 +108,19 @@ public class GUICard
     
     static public Icon getIcon(Card card)
     {
-        int cardValue = Arrays.binarySearch(Card.valuRanks, card.getValue());
-        int cardSuit;
+//        int cardValue = Arrays.binarySearch(Card.valuRanks, card.getValue());
+//        int cardSuit;
+//        
+//        if (card.getSuit() == Card.Suit.clubs)
+//            cardSuit = 0;
+//        else if (card.getSuit() == Card.Suit.diamonds)
+//            cardSuit = 1;
+//        else if (card.getSuit() == Card.Suit.hearts)
+//            cardSuit = 2;
+//        else
+//            cardSuit = 3;
         
-        if (card.getSuit() == Card.Suit.clubs)
-            cardSuit = 0;
-        else if (card.getSuit() == Card.Suit.diamonds)
-            cardSuit = 1;
-        else if (card.getSuit() == Card.Suit.hearts)
-            cardSuit = 2;
-        else
-            cardSuit = 3;
-        
-        return iconCards[cardValue][cardSuit];
+        return iconCards[Card.valueAsInt(card)][Card.suitAsInt(card)];
     }
     
     static public Icon getBackCardIcon()

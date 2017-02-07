@@ -154,61 +154,34 @@ public class Card
         return false;
     }
     
-    public static void arraySort( Card[] cards, int arraySize )
+    public static void arraySort( Card cards[], int arraySize )
     {
         Card temp;
-        boolean sorted = true;
-        while (sorted)
-        {
-            sorted = false;
-            for (int i = 0; i < cards.length-1; i++)
+        boolean sort = true;
+        while (sort)
+        {            
+            sort = false;
+            for ( int i = 0; i < cards.length-1; i++ )
             {
-                
-                if (suitAsInt(cards[i]) > suitAsInt(cards[i+1]))
+                if ( suitAsInt(cards[i]) > suitAsInt(cards[i+1]) )
                 {
-                    //System.out.println( cards[i].getSuit() + "/"+ suitAsInt(cards[i])
-                    //    + " ? " 
-                    //    + cards[i+1].getSuit() + "/" + suitAsInt(cards[i+1]) );
-                    temp = cards[i];
-                    cards[i] = cards[i+1];
-                    cards[i+1] = temp;
-                    sorted = true;
-                    //System.err.println( cards[i].getSuit() + "/"+ suitAsInt(cards[i])
-                    //    + " ? " 
-                    //    + cards[i+1].getSuit() + "/" + suitAsInt(cards[i+1]) );
+                    swapCards(cards, i, i+1);
+                    sort = true;
                 }
-                else
+                else if ( suitAsInt(cards[i]) == suitAsInt(cards[i+1]) )
                 {
-                    System.out.println( suitAsInt(cards[i]) + valueAsInt(cards[i])
-                            + " / "
-                            + suitAsInt(cards[i+1]) + valueAsInt(cards[i+1]) );
-                    if ( valueAsInt(cards[i]) < valueAsInt(cards[i+1]))
+                    if ( valueAsInt(cards[i]) > valueAsInt(cards[i+1]) )
                     {
-                        temp = cards[i];
-                        cards[i] = cards[i+1];
-                        cards[i+1] = temp;
-                        sorted = true;
+                        swapCards(cards, i, i+1);
+                        sort = true;
                     }
-                    System.err.println( suitAsInt(cards[i]) + valueAsInt(cards[i])
-                            + " / "
-                            + suitAsInt(cards[i+1]) + valueAsInt(cards[i+1]) );
                 }
             }
         }
     }
     
-    private boolean compareCards( Card[] cards )
-    {
-        return true;
-    }
-    
     public static int valueAsInt(Card card)
     {
-        /*int retVal = 0;
-        for ( int i = 0; i < valuRanks.length; i++ )
-        if ( valuRanks[i] == card.getValue() )
-        retVal = i;
-        return retVal;*/
         char testValue = card.value;
         switch ((char)testValue)
         {
@@ -253,5 +226,12 @@ public class Card
             return 2;
         else 
             return 3;
+    }
+    
+    private static void swapCards( Card[] cards, int one, int two )
+    {
+        Card temp = cards[one];
+        cards[one] = cards[two];
+        cards[two] = temp;
     }
 }

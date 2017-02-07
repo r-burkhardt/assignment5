@@ -263,7 +263,9 @@ public class Deck
     
     public void sort()
     {
-        Card.arraySort(cards, (numPacks*56));
+        
+        if ( this.getNumCards() != 0 )
+            Card.arraySort(cards, (numPacks*56));
     }
     
     public int getNumCards()
