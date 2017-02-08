@@ -70,8 +70,8 @@ public class Assignment5
     static JButton[] humanButtons = new JButton[NUM_CARDS_PER_HAND];
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
-
     static  CardGameFramework highCardGame;
+    boolean gameInPlay = false;
     
     public static void main(String[] args)
     {
