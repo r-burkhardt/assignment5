@@ -135,7 +135,7 @@ public class Hand
         Card card;
         if (k >= numCards)
         {
-            card = new Card('T', Card.Suit.spades);
+            card = null;//new Card('T', Card.Suit.spades);
         }
         else
         {

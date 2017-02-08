@@ -70,7 +70,7 @@ import java.awt.event.ActionListener;
 
 public class Assignment5
 {
-
+    static CardTable myCardTable;
     static int NUM_CARDS_PER_HAND = 7;
     static int NUM_PLAYERS = 2;
     static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
@@ -104,7 +104,7 @@ public class Assignment5
         
         highCardGame.deal();
         
-        CardTable myCardTable
+        myCardTable
                 = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
         myCardTable.setSize(800, 600);
         myCardTable.setLocationRelativeTo(null);
@@ -118,8 +118,12 @@ public class Assignment5
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
-            
-            humanButtons[k] = new JButton(Integer.toString(k), GUICard.getIcon(highCardGame.getHand(1).inspectCard(k)));
+            if (highCardGame.getHand(1).inspectCard(k) == null)
+                tempIcon = GUICard.getBlankIcon();
+            else
+                tempIcon = GUICard.getIcon(highCardGame.getHand(1).inspectCard(k));
+                
+            humanButtons[k] = new JButton(Integer.toString(k), tempIcon);
             humanButtons[k].setBorderPainted(false);
             humanButtons[k].addActionListener(cardListener);     
         }
@@ -158,11 +162,6 @@ public class Assignment5
         myCardTable.setVisible(true);    
     }
     
-    public static void refreshCardTable(CardTable tableToRefresh)
-    {
-        Assignment5.m.repaint();
-    }
-    
     public static class CardActionListener implements ActionListener
     {
 
@@ -173,31 +172,38 @@ public class Assignment5
             {
                 case "0":
                     highCardGame.playCard(0, 1);
-                    
+                    myCardTable.pnlHumanHand.repaint();
+                    myCardTable.repaint();
                     //System.out.println("Play Card 0");
                     break;
                 case "1":
                     highCardGame.playCard(1, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 1");
                     break;
                 case "2":
                     highCardGame.playCard(2, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 2");
                     break;
                 case "3":
                     highCardGame.playCard(3, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 3");
                     break;
                 case "4":
                     highCardGame.playCard(4, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 4");
                     break;
                 case "5":
                     highCardGame.playCard(5, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 5");
                     break;
                 case "6":
                     highCardGame.playCard(6, 1);
+                    myCardTable.repaint();
                     //System.out.println("Play Card 6");
                     break;
             }

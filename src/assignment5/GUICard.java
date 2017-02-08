@@ -64,6 +64,7 @@ public class GUICard
 {
     private static Icon[][] iconCards = new ImageIcon[14][4]; // 14 = A thru K + joker
     private static Icon iconBack;
+    private static Icon blankIcon;
     static boolean iconsLoaded = false;
     
     static void loadCardIcons()
@@ -84,6 +85,7 @@ public class GUICard
                 }
             }
             iconBack = new ImageIcon("images/BK.gif");
+            blankIcon = new ImageIcon("images/BL.gif");
             iconsLoaded = true;
         }
     }
@@ -119,6 +121,11 @@ public class GUICard
     static public Icon getBackCardIcon()
     {
         return iconBack;
+    }
+    
+    static public Icon getBlankIcon()
+    {
+        return blankIcon;
     }
     
 }
