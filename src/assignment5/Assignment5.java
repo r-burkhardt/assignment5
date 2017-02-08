@@ -93,9 +93,6 @@ public class Assignment5
         int k;
         Icon tempIcon;
         
-        Deck testDeck = new Deck();
-        testDeck.shuffle();
-        
 //        int numPacksPerDeck = 1;
 //        int numJokersPerPack = 0;
 //        int numUnusedCardsPerPack = 0;
@@ -159,6 +156,11 @@ public class Assignment5
         ///code goes here ...
         // show everything to the user
         myCardTable.setVisible(true);    
+    }
+    
+    public static void refreshCardTable(CardTable tableToRefresh)
+    {
+        Assignment5.m.repaint();
     }
     
     public static class CardActionListener implements ActionListener

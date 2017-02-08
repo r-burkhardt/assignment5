@@ -99,13 +99,5 @@ public class CardTable extends JFrame
     {
         return this.numPlayers;
     }
-
-    static class CardActionListener
-    {
-
-        public CardActionListener()
-        {
-        }
-    }
     
 }
