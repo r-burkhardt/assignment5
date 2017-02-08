@@ -83,6 +83,9 @@ public class Assignment5
         int k;
         Icon tempIcon;
         
+        Deck testDeck = new Deck();
+        testDeck.shuffle();
+        
         int numPacksPerDeck = 1;
         int numJokersPerPack = 0;
         int numUnusedCardsPerPack = 0;
@@ -109,7 +112,7 @@ public class Assignment5
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
             
-            humanButtons[k] = new JButton( GUICard.getIcon( highCardGame.getHand(0).inspectCard(k)));
+            humanButtons[k] = new JButton(Integer.toString(k), GUICard.getIcon( testDeck.dealCard() )); // highCardGame.getHand(1).inspectCard(k)));
             humanButtons[k].setBorderPainted(false);
             humanButtons[k].addActionListener(cardListener);     
         }
