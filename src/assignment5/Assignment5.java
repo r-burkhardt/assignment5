@@ -60,6 +60,9 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 
 public class Assignment5
 {
@@ -67,14 +70,15 @@ public class Assignment5
     static int NUM_CARDS_PER_HAND = 7;
     static int NUM_PLAYERS = 2;
     static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JButton[] humanButtons = new JButton[NUM_CARDS_PER_HAND];
+    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
-    static  CardGameFramework highCardGame;
-    boolean gameInPlay = false;
+    static CardGameFramework highCardGame;
+    static boolean gameInPlay = false;
     
     public static void main(String[] args)
     {
+        GUICard.loadCardIcons();
         
         // Create CardGameFramework
         int numPacksPerDeck = 1;
@@ -94,63 +98,119 @@ public class Assignment5
         myCardTable.setLocationRelativeTo(null);
         myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //myCardTable.setVisible(true);
+        myCardTable.setVisible(true);
         
-        GUICard.loadCardIcons();
+        int playOrNot = JOptionPane.showConfirmDialog(null, "Ready to play War?", "", JOptionPane.YES_NO_OPTION);
+        if (playOrNot == JOptionPane.YES_OPTION)
+        {
+            gameInPlay = true;
+            
+            buildPanels();
+
+            while (gameInPlay)
+            {            
+                //buildPanels();
+            }
+            
+        }
+        System.out.println("thanks for playing");
         
-        buildPanels();
         
         // show everything to the user
-        myCardTable.setVisible(true);    
+        //myCardTable.setVisible(true);    
     }
     
     public static void buildPanels()
     {
-//        int k;
-//        Icon tempIcon;
-//        
-//        CardActionListener cardListener = new CardActionListener();
-//        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-//        {
-//            computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
-//            if (highCardGame.getHand(1).inspectCard(k) == null)
-//                tempIcon = GUICard.getBlankIcon();
-//            else
-//                tempIcon = GUICard.getIcon(highCardGame.getHand(1).inspectCard(k));
-//                
-//            humanButtons[k] = new JButton(Integer.toString(k), tempIcon);
-//            humanButtons[k].setBorderPainted(false);
-//            humanButtons[k].addActionListener(cardListener);     
-//        }
-//
-//        for (k = 0; k < NUM_PLAYERS; k++)
-//        {
-//            //playedCardLabels[k] = new JLabel( GUICard.getIcon( () ),
-//            //        JLabel.CENTER );
-//            if ( k % NUM_PLAYERS == 0 )
-//            {
-//                playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
-//            }
-//            else
-//            {
-//                String temp = "Player " + k;
-//                playLabelText[k] = new JLabel( temp, JLabel.CENTER );
-//            }
-//        }
-//
-//        // ADD LABELS TO PANELS -----------------------------------------
-//        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-//        {
-//            myCardTable.pnlComputerHand.add(computerLabels[k]);
-//            myCardTable.pnlHumanHand.add(humanButtons[k]);
-//        }
-//        
-//        for (k = 0; k < NUM_PLAYERS; k++)
-//            //System.out.println(k);
-//            //myCardTable.pnlPlayArea.add(playedCardLabels[k]);
-//        for (k = 0; k < NUM_PLAYERS; k++)
-//            myCardTable.pnlPlayArea.add(playLabelText[k]);
+        int k;
+        Icon tempIcon;
         
+        CardActionListener cardListener = new CardActionListener();
+        CardClickListener clickListener = new CardClickListener();
+        
+        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+        {
+            computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
+            if (highCardGame.getHand(1).inspectCard(k) == null)
+                tempIcon = GUICard.getBlankIcon();
+            else
+                tempIcon = GUICard.getIcon(highCardGame.getHand(1).inspectCard(k));
+            humanLabels[k] = new JLabel( tempIcon );
+            humanLabels[k].addMouseListener(clickListener);   
+        }
+
+        for (k = 0; k < NUM_PLAYERS; k++)
+        {
+            playedCardLabels[k] = new JLabel( GUICard.getBlankIcon(),
+                    JLabel.CENTER );
+            if ( k % NUM_PLAYERS == 0 )
+            {
+                playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
+            }
+            else
+            {
+                String temp = "Player " + k;
+                playLabelText[k] = new JLabel( temp, JLabel.CENTER );
+            }
+        }
+
+        // ADD LABELS TO PANELS -----------------------------------------
+        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
+        {
+            myCardTable.pnlComputerHand.add(computerLabels[k]);
+            myCardTable.pnlHumanHand.add(humanLabels[k]);
+        }
+        
+        for (k = 0; k < NUM_PLAYERS; k++)
+            //System.out.println(k);
+            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+        for (k = 0; k < NUM_PLAYERS; k++)
+            myCardTable.pnlPlayArea.add(playLabelText[k]);
+        myCardTable.setVisible(true);
+        
+    }
+    
+    public static class CardClickListener implements MouseListener
+    {
+        public void mouseClicked(MouseEvent event)
+        {
+            if (event.getSource() == humanLabels[0])
+            {
+                highCardGame.playCard(0, 1);
+            }
+            if (event.getSource() == humanLabels[1])
+            {
+                highCardGame.playCard(1, 1);
+            }
+            if (event.getSource() == humanLabels[2])
+            {
+                highCardGame.playCard(2, 1);
+            }
+            if (event.getSource() == humanLabels[3])
+            {
+                highCardGame.playCard(3, 1);
+            }
+            if (event.getSource() == humanLabels[4])
+            {
+                highCardGame.playCard(4, 1);
+            }
+            if (event.getSource() == humanLabels[5])
+            {
+                highCardGame.playCard(5, 1);
+            }
+            if (event.getSource() == humanLabels[6])
+            {
+                highCardGame.playCard(6, 1);
+            }
+        }
+
+        public void mousePressed(MouseEvent e){}
+
+        public void mouseReleased(MouseEvent e){}
+        
+        public void mouseEntered(MouseEvent e){}
+        
+        public void mouseExited(MouseEvent e){}
     }
     
     public static class CardActionListener implements ActionListener
