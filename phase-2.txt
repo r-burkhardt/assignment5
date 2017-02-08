@@ -68,10 +68,10 @@ public class Assignment5
 
     static int NUM_CARDS_PER_HAND = 7;
     static int NUM_PLAYERS = 2;
-    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
-    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
+    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND]; //Icon array for computer cards
+    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND]; //Icon array for player cards
+    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS]; //Labels for middle cards
+    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS]; //Labels for text in middle
 
     public static void main(String[] args)
     {
@@ -89,6 +89,7 @@ public class Assignment5
         myCardTable.setVisible(true);
         
         // CREATE LABELS ----------------------------------------------------
+        //loads Icons and creates a full hand with card Icon images
         GUICard.loadCardIcons();
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
@@ -97,7 +98,8 @@ public class Assignment5
             humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
                     JLabel.CENTER );
         }
-
+        
+        //loads middle Cards by randomly generating
         for (k = 0; k < NUM_PLAYERS; k++)
         {
             playedCardLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
@@ -131,6 +133,7 @@ public class Assignment5
         myCardTable.setVisible(true);
     }
 
+    //returns a randomly generated card from a full deck
     static Card generateRandomCard()
     {
         Card.Suit newSuit;
@@ -214,7 +217,6 @@ public class Assignment5
 *
 * ==================================================================*/
 
-
 package assignment5;
 
 import java.awt.GridBagLayout;
@@ -223,6 +225,8 @@ import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//CardTable class creates creates a JFrame with three panels for:
+// user, computer and dealt cards
 public class CardTable extends JFrame
 {
     static int MAX_CARDS_PER_HAND = 56;
@@ -231,8 +235,10 @@ public class CardTable extends JFrame
     private int numCardsPerHand;
     private int numPlayers;
 
-    public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea;
+    public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea; //three panels for cards
 
+    //parameterized constructor that accepts title, numCardsPerHand, and players
+    //calls super constructor from JFrame class
     public CardTable(String title, int numCardsPerHand, int numPlayers)
     {
         super(title);
@@ -241,8 +247,8 @@ public class CardTable extends JFrame
         if (numPlayers <= MAX_PLAYERS)
             this.numPlayers = numPlayers;
         
-        frameInit();
-        this.setLayout( new GridLayout(3, 1) );
+        frameInit(); 
+        this.setLayout( new GridLayout(3, 1) ); //Grid Layout of 3,1 to fit 3 panels
         
         pnlComputerHand = new JPanel( new GridLayout( 1, numCardsPerHand ) );
         pnlPlayArea = new JPanel( new GridLayout( 2, 2 ) );
@@ -253,11 +259,13 @@ public class CardTable extends JFrame
         this.add( pnlHumanHand );
     }
     
+    //accessor for numCardsPerHand
     public int getNumCardsPerHand()
     {
         return this.numCardsPerHand;
     }
     
+    //accessor for numPlayers
     public int getNumPlayers()
     {
         return this.numPlayers;
@@ -329,17 +337,17 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-
+//GUICard class loads the icons from the images source directory.
 public class GUICard
 {
     private static Icon[][] iconCards = new ImageIcon[14][4]; // 14 = A thru K + joker
-    private static Icon iconBack;
-    static boolean iconsLoaded = false;
+    private static Icon iconBack; //generic backCard for hidden Cards
+    static boolean iconsLoaded = false; //flag to notify if iconCards has already been loaded
     
     static void loadCardIcons()
     {
-        // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
-        // in a SHORT loop.  For each file name, read it in and use it to
+        // builds the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
+        // in a SHORT loop.  For each file name, reads it in and uses it to
         // instantiate each of the 57 Icons in the icon[] array.
         if (!iconsLoaded)
         {
@@ -381,11 +389,13 @@ public class GUICard
         return "";
     }
     
+    //returns a specific Icon for a desired card
     static public Icon getIcon(Card card)
     {        
         return iconCards[Card.valueAsInt(card)][Card.suitAsInt(card)];
     }
     
+    //returns iconBack card
     static public Icon getBackCardIcon()
     {
         return iconBack;
@@ -455,14 +465,13 @@ import java.util.Arrays;
 public class Card
 {
     // Suit enum of possible suits for cards
-
     public enum Suit
     {
         clubs, diamonds, hearts, spades;
     }
     
     public static char[]valuRanks = { 'A', '2', '3', '4', '5', '6', '7', '8',
-        '9', 'T', 'J', 'Q', 'K', 'X' };
+        '9', 'T', 'J', 'Q', 'K', 'X' }; //array of all possible values for cards
 
     // private data members
     private char value;
@@ -552,6 +561,7 @@ public class Card
         return false;
     }
     
+    //sorts the array of cards 
     public static void arraySort( Card cards[], int arraySize )
     {
         Card temp;
@@ -578,6 +588,7 @@ public class Card
         }
     }
     
+    //returns an int value for a card
     public static int valueAsInt(Card card)
     {
         char testValue = card.value;
@@ -614,6 +625,7 @@ public class Card
         }
     }
     
+    //returns an int value for a suit
     public static int suitAsInt(Card card)
     {
         if (card.suit == Suit.clubs)
@@ -626,6 +638,7 @@ public class Card
             return 3;
     }
     
+    //swaps two cards using a temp variable
     private static void swapCards( Card[] cards, int one, int two )
     {
         Card temp = cards[one];
@@ -694,7 +707,7 @@ package assignment5;
 
 public class Hand
 {
-
+    //data members
     public static int MAX_CARDS = 50;
     private Card[] myCards;
     private int numCards;
@@ -776,6 +789,7 @@ public class Hand
         return card;
     }
     
+    //sorts the hand
     public void sort()
     {
         if ( this.getNumCards() != 0 )
@@ -846,12 +860,13 @@ import java.util.Random;
 
 public class Deck
 {
-
     public final int MAX_CARDS = 336; // max 6 decks of 56 cards
 
+    //private data members
     private static Card[] masterPack;
     private Card[] cards;
 
+    //package private data members
     int topCard;
     int numPacks;
 
@@ -1020,6 +1035,8 @@ public class Deck
         }
     }
     
+    //adds a card to the top of the Card
+    //returns true if added, false if add failed
     public boolean addCard( Card card )
     {
         int count = 0;
@@ -1033,6 +1050,8 @@ public class Deck
         return true;
     }
     
+    //removes a card in argument from the deck
+    //decrements topCard
     public boolean removeCard( Card card )
     {
         for (int i = topCard; i >= 0; i--)
@@ -1051,6 +1070,7 @@ public class Deck
         return false;
     }
     
+    //sorts the deck
     public void sort()
     {
         
@@ -1058,6 +1078,7 @@ public class Deck
             Card.arraySort(cards, (numPacks*56));
     }
     
+    //returns the number of cards in the deck
     public int getNumCards()
     {
         int cardCount = 0;
@@ -1069,3 +1090,6 @@ public class Deck
     
 }
 
+phase-2.txt
+Open with
+Displaying phase-2.txt.
