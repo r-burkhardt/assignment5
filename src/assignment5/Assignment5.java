@@ -78,6 +78,16 @@ public class Assignment5
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
     
+    // Create CardGameFramework
+    static int numPacksPerDeck = 1;
+    static int numJokersPerPack = 0;
+    static int numUnusedCardsPerPack = 0;
+    static Card[] unusedCardsPerPack = null;
+
+    static  CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
+        numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
+        NUM_PLAYERS, NUM_CARDS_PER_HAND);
+    
     public static void main(String[] args)
     {
         int k;
@@ -86,14 +96,14 @@ public class Assignment5
         Deck testDeck = new Deck();
         testDeck.shuffle();
         
-        int numPacksPerDeck = 1;
-        int numJokersPerPack = 0;
-        int numUnusedCardsPerPack = 0;
-        Card[] unusedCardsPerPack = null;
-        
-        CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
-            numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
-            NUM_PLAYERS, NUM_CARDS_PER_HAND);
+//        int numPacksPerDeck = 1;
+//        int numJokersPerPack = 0;
+//        int numUnusedCardsPerPack = 0;
+//        Card[] unusedCardsPerPack = null;
+//        
+//        CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
+//            numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
+//            NUM_PLAYERS, NUM_CARDS_PER_HAND);
         
         highCardGame.deal();
         
@@ -107,12 +117,12 @@ public class Assignment5
         
         GUICard.loadCardIcons();
         
-        CardTable.CardActionListener cardListener = new CardTable.CardActionListener();
+        CardActionListener cardListener = new CardActionListener();
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
             
-            humanButtons[k] = new JButton(Integer.toString(k), GUICard.getIcon( testDeck.dealCard() )); // highCardGame.getHand(1).inspectCard(k)));
+            humanButtons[k] = new JButton(Integer.toString(k), GUICard.getIcon(highCardGame.getHand(1).inspectCard(k)));
             humanButtons[k].setBorderPainted(false);
             humanButtons[k].addActionListener(cardListener);     
         }
@@ -149,6 +159,48 @@ public class Assignment5
         ///code goes here ...
         // show everything to the user
         myCardTable.setVisible(true);    
+    }
+    
+    public static class CardActionListener implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent event)
+        {
+            //System.out.println(event.getActionCommand());
+            switch (event.getActionCommand())
+            {
+                case "0":
+                    highCardGame.playCard(0, 1);
+                    
+                    //System.out.println("Play Card 0");
+                    break;
+                case "1":
+                    highCardGame.playCard(1, 1);
+                    //System.out.println("Play Card 1");
+                    break;
+                case "2":
+                    highCardGame.playCard(2, 1);
+                    //System.out.println("Play Card 2");
+                    break;
+                case "3":
+                    highCardGame.playCard(3, 1);
+                    //System.out.println("Play Card 3");
+                    break;
+                case "4":
+                    highCardGame.playCard(4, 1);
+                    //System.out.println("Play Card 4");
+                    break;
+                case "5":
+                    highCardGame.playCard(5, 1);
+                    //System.out.println("Play Card 5");
+                    break;
+                case "6":
+                    highCardGame.playCard(6, 1);
+                    //System.out.println("Play Card 6");
+                    break;
+            }
+        }
+        
     }
     
     
