@@ -77,30 +77,21 @@ public class Assignment5
     static JButton[] humanButtons = new JButton[NUM_CARDS_PER_HAND];
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
-    
-    // Create CardGameFramework
-    static int numPacksPerDeck = 1;
-    static int numJokersPerPack = 0;
-    static int numUnusedCardsPerPack = 0;
-    static Card[] unusedCardsPerPack = null;
 
-    static  CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
-        numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
-        NUM_PLAYERS, NUM_CARDS_PER_HAND);
+    static  CardGameFramework highCardGame;
     
     public static void main(String[] args)
     {
-        int k;
-        Icon tempIcon;
         
-//        int numPacksPerDeck = 1;
-//        int numJokersPerPack = 0;
-//        int numUnusedCardsPerPack = 0;
-//        Card[] unusedCardsPerPack = null;
-//        
-//        CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
-//            numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
-//            NUM_PLAYERS, NUM_CARDS_PER_HAND);
+        // Create CardGameFramework
+        int numPacksPerDeck = 1;
+        int numJokersPerPack = 0;
+        int numUnusedCardsPerPack = 0;
+        Card[] unusedCardsPerPack = null;
+        
+        highCardGame = new CardGameFramework(numPacksPerDeck,
+                numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
+                NUM_PLAYERS, NUM_CARDS_PER_HAND);
         
         highCardGame.deal();
         
@@ -113,6 +104,17 @@ public class Assignment5
         myCardTable.setVisible(true);
         
         GUICard.loadCardIcons();
+        
+        buildPanels();
+        
+        // show everything to the user
+        myCardTable.setVisible(true);    
+    }
+    
+    public static void buildPanels()
+    {
+        int k;
+        Icon tempIcon;
         
         CardActionListener cardListener = new CardActionListener();
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
@@ -156,10 +158,6 @@ public class Assignment5
         for (k = 0; k < NUM_PLAYERS; k++)
             myCardTable.pnlPlayArea.add(playLabelText[k]);
         
-        // and two random cards in the play region (simulating a computer/hum ply)
-        ///code goes here ...
-        // show everything to the user
-        myCardTable.setVisible(true);    
     }
     
     public static class CardActionListener implements ActionListener
@@ -172,7 +170,7 @@ public class Assignment5
             {
                 case "0":
                     highCardGame.playCard(0, 1);
-                    myCardTable.pnlHumanHand.repaint();
+                    buildPanels();
                     myCardTable.repaint();
                     //System.out.println("Play Card 0");
                     break;
