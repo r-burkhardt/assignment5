@@ -167,6 +167,7 @@ public class Assignment5
         for (k = 0; k < NUM_PLAYERS; k++)
             myCardTable.pnlPlayArea.add(playLabelText[k]);
         myCardTable.setVisible(true);
+        myCardTable.repaint();
         
     }
     
@@ -176,7 +177,10 @@ public class Assignment5
         {
             if (event.getSource() == humanLabels[0])
             {
+                humanLabels[highCardGame.getHand(1).getNumCards()-1] =
+                        new JLabel(GUICard.getBlankIcon());
                 highCardGame.playCard(0, 1);
+                
             }
             if (event.getSource() == humanLabels[1])
             {
