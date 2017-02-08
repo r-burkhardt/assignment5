@@ -55,6 +55,8 @@ package assignment5;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -96,6 +98,16 @@ public class CardTable extends JFrame
     public int getNumPlayers()
     {
         return this.numPlayers;
+    }
+    
+    public static class CardActionListener implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent event)
+        {
+            
+        }
+        
     }
     
 }

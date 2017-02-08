@@ -68,7 +68,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Assignment5 implements ActionListener
+public class Assignment5
 {
 
     static int NUM_CARDS_PER_HAND = 7;
@@ -104,13 +104,14 @@ public class Assignment5 implements ActionListener
         
         GUICard.loadCardIcons();
         
+        CardTable.CardActionListener cardListener = new CardTable.CardActionListener();
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
             
             humanButtons[k] = new JButton( GUICard.getIcon( highCardGame.getHand(0).inspectCard(k)));
             humanButtons[k].setBorderPainted(false);
-            //humanButtons[k].addActionListener();     
+            humanButtons[k].addActionListener(cardListener);     
         }
 
         for (k = 0; k < NUM_PLAYERS; k++)
@@ -136,7 +137,8 @@ public class Assignment5 implements ActionListener
         }
         
         for (k = 0; k < NUM_PLAYERS; k++)
-            myCardTable.pnlPlayArea.add(playedCardLabels[k]);
+            //System.out.println(k);
+            //myCardTable.pnlPlayArea.add(playedCardLabels[k]);
         for (k = 0; k < NUM_PLAYERS; k++)
             myCardTable.pnlPlayArea.add(playLabelText[k]);
         
@@ -146,10 +148,5 @@ public class Assignment5 implements ActionListener
         myCardTable.setVisible(true);    
     }
     
-    public void actionPerformed(ActionEvent e)
-    {
-        if (true)
-            System.out.println(1+1);
-    }
     
 }
