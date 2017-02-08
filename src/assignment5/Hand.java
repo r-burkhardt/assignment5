@@ -133,13 +133,13 @@ public class Hand
     public Card inspectCard(int k)
     {
         Card card;
-        if (k <= numCards)
+        if (k >= numCards)
         {
             card = new Card('T', Card.Suit.spades);
         }
         else
         {
-            card = myCards[k - 1];
+            card = myCards[k];
         }
         return card;
     }
