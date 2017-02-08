@@ -62,46 +62,59 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Assignment5
+public class Assignment5 implements ActionListener
 {
 
     static int NUM_CARDS_PER_HAND = 7;
     static int NUM_PLAYERS = 2;
     static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
+    static JButton[] humanButtons = new JButton[NUM_CARDS_PER_HAND];
     static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
-
+    
     public static void main(String[] args)
     {
         int k;
         Icon tempIcon;
-
-        // establish main frame in which program will run
+        
+        int numPacksPerDeck = 1;
+        int numJokersPerPack = 0;
+        int numUnusedCardsPerPack = 0;
+        Card[] unusedCardsPerPack = null;
+        
+        CardGameFramework highCardGame = new CardGameFramework(numPacksPerDeck,
+            numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, 
+            NUM_PLAYERS, NUM_CARDS_PER_HAND);
+        
+        highCardGame.deal();
+        
         CardTable myCardTable
                 = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
         myCardTable.setSize(800, 600);
         myCardTable.setLocationRelativeTo(null);
         myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // show everything to the user
+        
         myCardTable.setVisible(true);
         
-        // CREATE LABELS ----------------------------------------------------
         GUICard.loadCardIcons();
+        
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
-            computerLabels[k] = new JLabel( GUICard.getBackCardIcon(),
-                    JLabel.CENTER );
-            humanLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
-                    JLabel.CENTER );
+            computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
+            
+            humanButtons[k] = new JButton( GUICard.getIcon( highCardGame.getHand(0).inspectCard(k)));
+            humanButtons[k].setBorderPainted(false);
+            //humanButtons[k].addActionListener();     
         }
 
         for (k = 0; k < NUM_PLAYERS; k++)
         {
-            playedCardLabels[k] = new JLabel( GUICard.getIcon( generateRandomCard() ),
-                    JLabel.CENTER );
+            //playedCardLabels[k] = new JLabel( GUICard.getIcon( () ),
+            //        JLabel.CENTER );
             if ( k % NUM_PLAYERS == 0 )
             {
                 playLabelText[k] = new JLabel( "Computer", JLabel.CENTER );
@@ -117,7 +130,7 @@ public class Assignment5
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             myCardTable.pnlComputerHand.add(computerLabels[k]);
-            myCardTable.pnlHumanHand.add(humanLabels[k]);
+            myCardTable.pnlHumanHand.add(humanButtons[k]);
         }
         
         for (k = 0; k < NUM_PLAYERS; k++)
@@ -128,34 +141,12 @@ public class Assignment5
         // and two random cards in the play region (simulating a computer/hum ply)
         ///code goes here ...
         // show everything to the user
-        myCardTable.setVisible(true);
+        myCardTable.setVisible(true);    
     }
-
-    static Card generateRandomCard()
+    
+    public void actionPerformed(ActionEvent e)
     {
-        Card.Suit newSuit;
-        char newValue;
-
-        Random rand = new Random();
-        int randNum = rand.nextInt(14);
-        newValue = Card.valuRanks[randNum];
-        switch (randNum % 4)
-        {
-            case 0:
-                newSuit = Card.Suit.clubs;
-                break;
-            case 1:
-                newSuit = Card.Suit.diamonds;
-                break;
-            case 2:
-                newSuit = Card.Suit.hearts;
-                break;
-            default:
-                newSuit = Card.Suit.spades;
-        }
-
-        return new Card(newValue, newSuit);
-
+        
     }
-
+    
 }
