@@ -182,8 +182,15 @@ public class Assignment5
             {
                 labels[i] = labels[i+1];
             }
+            labels[i].repaint();
             
         }
+    }
+    
+    public static void updatePanels()
+    {
+        myCardTable.pnlComputerHand.removeAll();
+        myCardTable.pnlComputerHand.repaint();
     }
     
     public static class CardClickListener implements MouseListener
@@ -193,58 +200,58 @@ public class Assignment5
             if (event.getSource() == humanLabels[0])
             {
                 highCardGame.playCard(0, 1);
-                removeLabel(humanLabels, 0);
-                //buildPanels();
-                myCardTable.revalidate();
+                updatePanels();
+                //removeLabel(humanLabels, 0);
+                //myCardTable.revalidate();
                 System.out.println(" Card 0 ");
                 
             }
             if (event.getSource() == humanLabels[1])
             {
                 highCardGame.playCard(1, 1);
-                removeLabel(humanLabels, 1);
+                //removeLabel(humanLabels, 1);
                 //buildPanels();
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 1 ");
             }
             if (event.getSource() == humanLabels[2])
             {
                 highCardGame.playCard(2, 1);
-                removeLabel(humanLabels, 2);
+                //removeLabel(humanLabels, 2);
                 //buildPanels();
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 2 ");
             }
             if (event.getSource() == humanLabels[3])
             {
                 highCardGame.playCard(3, 1);
-                removeLabel(humanLabels, 3);
+                //removeLabel(humanLabels, 3);
                 //buildPanels();
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 3 ");
             }
             if (event.getSource() == humanLabels[4])
             {
                 highCardGame.playCard(4, 1);
-                removeLabel(humanLabels, 4);
+                //removeLabel(humanLabels, 4);
                 //buildPanels();
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 4 ");
             }
             if (event.getSource() == humanLabels[5])
             {
                 highCardGame.playCard(5, 1);
-                removeLabel(humanLabels, 5);
+                //removeLabel(humanLabels, 5);
                 //
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 5 ");
             }
             if (event.getSource() == humanLabels[6])
             {
                 highCardGame.playCard(6, 1);
-                removeLabel(humanLabels, 6);
+                //removeLabel(humanLabels, 6);
                 //buildPanels();
-                myCardTable.revalidate();
+                //myCardTable.revalidate();
                 System.out.println(" Card 6 ");
             }
         }
