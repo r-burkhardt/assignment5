@@ -199,7 +199,8 @@ public class Assignment5
         {
             if (event.getSource() == humanLabels[0])
             {
-                humanCard = highCardGame.playCard(0, 1);
+                humanCard = highCardGame.playCard(1, 0);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 0);
                 removeCard(computerLabels, 0);
                 updatePanels();
@@ -209,54 +210,55 @@ public class Assignment5
             else if (event.getSource() == humanLabels[1])
             {
                 humanCard = highCardGame.playCard(1, 1);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 1);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 1 ");
             }
             else if (event.getSource() == humanLabels[2])
             {
-                humanCard = highCardGame.playCard(2, 1);
+                humanCard = highCardGame.playCard(1, 2);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 2);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 2 ");
             }
             else if (event.getSource() == humanLabels[3])
             {
-                humanCard = highCardGame.playCard(3, 1);
+                humanCard = highCardGame.playCard(1, 3);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 3);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 3 ");
             }
             else if (event.getSource() == humanLabels[4])
             {
-                humanCard = highCardGame.playCard(4, 1);
+                humanCard = highCardGame.playCard(1, 4);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 4);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 4 ");
             }
             else if (event.getSource() == humanLabels[5])
             {
-                humanCard = highCardGame.playCard(5, 1);
+                humanCard = highCardGame.playCard(1, 6);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 5);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 5 ");
             }
             else if (event.getSource() == humanLabels[6])
             {
-                humanCard = highCardGame.playCard(6, 1);
+                humanCard = highCardGame.playCard(1, 6);
+                computerCard = highCardGame.playCard(0, computersPlay(highCardGame.getHand(0)));
                 removeCard(humanLabels, 6);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                //System.out.println(" Card 6 ");
             }
             
             playedCardLabels[0] = new JLabel(GUICard.getIcon(computerCard));
             playedCardLabels[1] = new JLabel(GUICard.getIcon(humanCard));
+            myCardTable.pnlPlayArea.revalidate();
             
             //playerPlays[0].takeCard(computerCard);
             //playerPlays[1].takeCard(humanCard);
@@ -325,5 +327,21 @@ public class Assignment5
         
     }
     
+    public static int computersPlay(Hand hand)
+    {
+        hand.sort();//sorts hand lowest to highest
+        
+        int numCards = hand.getNumCards(); 
+        int middleCard = (numCards - 1) / 2; //middle index of hand
+        
+        //if there are two remaining cards, returns the lowest
+        //if one remaining card, returns it.
+        if(numCards == 1 || numCards == 2)
+            return 0;
+        if(numCards == 0)
+            return -1;
+        
+        return middleCard;  
+    }
     
 }
