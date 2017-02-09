@@ -125,7 +125,7 @@ public class Assignment5
         int k;
         Icon tempIcon;
         
-        CardActionListener cardListener = new CardActionListener();
+        //CardActionListener cardListener = new CardActionListener();
         CardClickListener clickListener = new CardClickListener();
         
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
@@ -162,7 +162,6 @@ public class Assignment5
         }
         
         for (k = 0; k < NUM_PLAYERS; k++)
-            //System.out.println(k);
             myCardTable.pnlPlayArea.add(playedCardLabels[k]);
         for (k = 0; k < NUM_PLAYERS; k++)
             myCardTable.pnlPlayArea.add(playLabelText[k]);
@@ -171,40 +170,82 @@ public class Assignment5
         
     }
     
+    public static void removeLabel( JLabel[] labels, int removed )
+    {
+        for (int i = removed; i < labels.length; i++)
+        {
+            if (i == labels.length-1)
+            {
+                labels[i] = new JLabel(GUICard.getBlankIcon());
+            }
+            else
+            {
+                labels[i] = labels[i+1];
+            }
+            
+        }
+    }
+    
     public static class CardClickListener implements MouseListener
     {
         public void mouseClicked(MouseEvent event)
         {
             if (event.getSource() == humanLabels[0])
             {
-                humanLabels[highCardGame.getHand(1).getNumCards()-1] =
-                        new JLabel(GUICard.getBlankIcon());
                 highCardGame.playCard(0, 1);
+                removeLabel(humanLabels, 0);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 0 ");
                 
             }
             if (event.getSource() == humanLabels[1])
             {
                 highCardGame.playCard(1, 1);
+                removeLabel(humanLabels, 1);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 1 ");
             }
             if (event.getSource() == humanLabels[2])
             {
                 highCardGame.playCard(2, 1);
+                removeLabel(humanLabels, 2);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 2 ");
             }
             if (event.getSource() == humanLabels[3])
             {
                 highCardGame.playCard(3, 1);
+                removeLabel(humanLabels, 3);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 3 ");
             }
             if (event.getSource() == humanLabels[4])
             {
                 highCardGame.playCard(4, 1);
+                removeLabel(humanLabels, 4);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 4 ");
             }
             if (event.getSource() == humanLabels[5])
             {
                 highCardGame.playCard(5, 1);
+                removeLabel(humanLabels, 5);
+                //
+                myCardTable.revalidate();
+                System.out.println(" Card 5 ");
             }
             if (event.getSource() == humanLabels[6])
             {
                 highCardGame.playCard(6, 1);
+                removeLabel(humanLabels, 6);
+                //buildPanels();
+                myCardTable.revalidate();
+                System.out.println(" Card 6 ");
             }
         }
 
