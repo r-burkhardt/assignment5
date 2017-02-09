@@ -75,7 +75,7 @@ public class Assignment5
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
     static CardGameFramework highCardGame;
     static boolean gameInPlay = false;
-    static int numCardsPlayed = 0;
+    static int roundsPlayed = 0;
     static Hand[] playerPlays = new Hand[NUM_PLAYERS];
     
     public static void main(String[] args)
@@ -106,8 +106,7 @@ public class Assignment5
         if (playOrNot == JOptionPane.YES_OPTION)
         {
             buildPanels();
-        }
-        System.out.println("thanks for playing");   
+        }  
     }
     
     public static void buildPanels()
@@ -141,6 +140,7 @@ public class Assignment5
                 String temp = "Player " + k;
                 playLabelText[k] = new JLabel( temp, JLabel.CENTER );
             }
+            playerPlays[k] = new Hand();
         }
 
         // ADD LABELS TO PANELS -----------------------------------------
@@ -186,8 +186,6 @@ public class Assignment5
         
         myCardTable.pnlComputerHand.revalidate();
         myCardTable.pnlHumanHand.revalidate();
-        
-        
     }
     
     public static class CardClickListener implements MouseListener
@@ -256,16 +254,41 @@ public class Assignment5
                 updatePanels();
             }
             
+            myCardTable.pnlPlayArea.removeAll();
             playedCardLabels[0] = new JLabel(GUICard.getIcon(computerCard));
             playedCardLabels[1] = new JLabel(GUICard.getIcon(humanCard));
+            myCardTable.pnlPlayArea.add(playedCardLabels[0]);
+            myCardTable.pnlPlayArea.add(playedCardLabels[1]);
+            myCardTable.pnlPlayArea.add(playLabelText[0]);
+            myCardTable.pnlPlayArea.add(playLabelText[1]);
             myCardTable.pnlPlayArea.revalidate();
             
-            //playerPlays[0].takeCard(computerCard);
-            //playerPlays[1].takeCard(humanCard);
-            numCardsPlayed++;
-            if (numCardsPlayed == NUM_CARDS_PER_HAND-1)
+            if (Card.valueAsInt(computerCard) > Card.valueAsInt(humanCard))
             {
-                JOptionPane.showMessageDialog(null, (" Wins!"));
+                JOptionPane.showMessageDialog(null, ("Computer Wins Round!"));
+                playerPlays[0].takeCard(computerCard);
+                playerPlays[0].takeCard(humanCard);
+            }
+            else if (Card.valueAsInt(computerCard) == Card.valueAsInt(humanCard))
+            {
+                JOptionPane.showMessageDialog(null, ("Its a Draw No One Wins Round!"));
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(null, ("Player 1 Wins Round!"));
+                playerPlays[1].takeCard(computerCard);
+                playerPlays[1].takeCard(humanCard);
+            }
+            roundsPlayed++;
+            
+            if (roundsPlayed == NUM_CARDS_PER_HAND)
+            {
+                if (playerPlays[0].getNumCards() > playerPlays[1].getNumCards())
+                    JOptionPane.showMessageDialog(null, ("Computer Wins Game!\nThanks for Playing"));
+                else if (playerPlays[0].getNumCards() > playerPlays[1].getNumCards())
+                    JOptionPane.showMessageDialog(null, ("Tie Game!\nThanks for Playing"));
+                else
+                    JOptionPane.showMessageDialog(null, ("Player 1 Wins Game!\nThanks for Playing"));
             }
         }
 
@@ -329,7 +352,7 @@ public class Assignment5
     
     public static int computersPlay(Hand hand)
     {
-        hand.sort();//sorts hand lowest to highest
+        hand.sortByVal();//sorts hand lowest to highest
         
         int numCards = hand.getNumCards(); 
         int middleCard = (numCards - 1) / 2; //middle index of hand

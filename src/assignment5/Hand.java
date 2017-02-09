@@ -149,4 +149,10 @@ public class Hand
         if ( this.getNumCards() != 0 )
             Card.arraySort(myCards, numCards);
     }
+    
+    public void sortByVal()
+    {
+        if( this.getNumCards() != 0 )
+            Card.arraySortByValue(myCards, numCards);
+    }
 }

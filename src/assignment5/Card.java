@@ -161,7 +161,7 @@ public class Card
         while (sort)
         {            
             sort = false;
-            for ( int i = 0; i < cards.length-1; i++ )
+            for ( int i = 0; i < arraySize-1; i++ )
             {
                 if ( suitAsInt(cards[i]) > suitAsInt(cards[i+1]) )
                 {
@@ -233,5 +233,23 @@ public class Card
         Card temp = cards[one];
         cards[one] = cards[two];
         cards[two] = temp;
+    }
+    
+    public static void arraySortByValue(Card cards[], int arraySize)
+    {
+        Card temp;
+        boolean sort = true;
+        while(sort)
+        {
+            sort = false;
+            for(int i = 0; i < arraySize - 1; i++)
+            {
+               if ( valueAsInt(cards[i]) > valueAsInt(cards[i+1]) )
+               {
+                    swapCards(cards, i, i+1);
+                    sort = true;
+               } 
+            }
+        }
     }
 }
