@@ -75,6 +75,8 @@ public class Assignment5
     static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
     static CardGameFramework highCardGame;
     static boolean gameInPlay = false;
+    static int numCardsPlayed = 0;
+    static Hand[] playerWins = new Hand[NUM_PLAYERS];
     
     public static void main(String[] args)
     {
@@ -107,17 +109,13 @@ public class Assignment5
             
             buildPanels();
 
-            while (gameInPlay)
-            {            
-                //buildPanels();
-            }
+            //while (gameInPlay)
+            //{            
+                ////
+            //}
             
         }
-        System.out.println("thanks for playing");
-        
-        
-        // show everything to the user
-        //myCardTable.setVisible(true);    
+        System.out.println("thanks for playing");   
     }
     
     public static void buildPanels()
@@ -125,7 +123,6 @@ public class Assignment5
         int k;
         Icon tempIcon;
         
-        //CardActionListener cardListener = new CardActionListener();
         CardClickListener clickListener = new CardClickListener();
         
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
@@ -177,12 +174,10 @@ public class Assignment5
             if (i == labels.length-1)
             {
                 labels[i] = new JLabel(GUICard.getBlankIcon());
-                //System.out.println("blank added");
             }
             else
             {
                 labels[i] = labels[i+1];
-                //System.out.println("move made");
             }            
         }
     }
@@ -197,7 +192,7 @@ public class Assignment5
             myCardTable.pnlHumanHand.add(humanLabels[i]);
         }
         
-        myCardTable.pnlComputerHand.repaint();
+        myCardTable.pnlComputerHand.revalidate();
         myCardTable.pnlHumanHand.revalidate();
     }
     
@@ -211,7 +206,7 @@ public class Assignment5
                 removeCard(humanLabels, 0);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 0 ");
+                //System.out.println(" Card 0 ");
                 
             }
             if (event.getSource() == humanLabels[1])
@@ -220,7 +215,7 @@ public class Assignment5
                 removeCard(humanLabels, 1);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 1 ");
+                //System.out.println(" Card 1 ");
             }
             if (event.getSource() == humanLabels[2])
             {
@@ -228,7 +223,7 @@ public class Assignment5
                 removeCard(humanLabels, 2);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 2 ");
+                //System.out.println(" Card 2 ");
             }
             if (event.getSource() == humanLabels[3])
             {
@@ -236,7 +231,7 @@ public class Assignment5
                 removeCard(humanLabels, 3);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 3 ");
+                //System.out.println(" Card 3 ");
             }
             if (event.getSource() == humanLabels[4])
             {
@@ -244,7 +239,7 @@ public class Assignment5
                 removeCard(humanLabels, 4);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 4 ");
+                //System.out.println(" Card 4 ");
             }
             if (event.getSource() == humanLabels[5])
             {
@@ -252,7 +247,7 @@ public class Assignment5
                 removeCard(humanLabels, 5);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 5 ");
+                //System.out.println(" Card 5 ");
             }
             if (event.getSource() == humanLabels[6])
             {
@@ -260,7 +255,7 @@ public class Assignment5
                 removeCard(humanLabels, 6);
                 removeCard(computerLabels, 0);
                 updatePanels();
-                System.out.println(" Card 6 ");
+                //System.out.println(" Card 6 ");
             }
         }
 
