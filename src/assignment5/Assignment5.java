@@ -76,7 +76,7 @@ public class Assignment5
     static CardGameFramework highCardGame;
     static boolean gameInPlay = false;
     static int numCardsPlayed = 0;
-    static Hand[] playerWins = new Hand[NUM_PLAYERS];
+    static Hand[] playerPlays = new Hand[NUM_PLAYERS];
     
     public static void main(String[] args)
     {
@@ -105,15 +105,7 @@ public class Assignment5
         int playOrNot = JOptionPane.showConfirmDialog(null, "Ready to play War?", "", JOptionPane.YES_NO_OPTION);
         if (playOrNot == JOptionPane.YES_OPTION)
         {
-            gameInPlay = true;
-            
             buildPanels();
-
-            //while (gameInPlay)
-            //{            
-                ////
-            //}
-            
         }
         System.out.println("thanks for playing");   
     }
@@ -194,68 +186,84 @@ public class Assignment5
         
         myCardTable.pnlComputerHand.revalidate();
         myCardTable.pnlHumanHand.revalidate();
+        
+        
     }
     
     public static class CardClickListener implements MouseListener
     {
+        Card humanCard;
+        Card computerCard;
+        
         public void mouseClicked(MouseEvent event)
         {
             if (event.getSource() == humanLabels[0])
             {
-                highCardGame.playCard(0, 1);
+                humanCard = highCardGame.playCard(0, 1);
                 removeCard(humanLabels, 0);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 0 ");
                 
             }
-            if (event.getSource() == humanLabels[1])
+            else if (event.getSource() == humanLabels[1])
             {
-                highCardGame.playCard(1, 1);
+                humanCard = highCardGame.playCard(1, 1);
                 removeCard(humanLabels, 1);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 1 ");
             }
-            if (event.getSource() == humanLabels[2])
+            else if (event.getSource() == humanLabels[2])
             {
-                highCardGame.playCard(2, 1);
+                humanCard = highCardGame.playCard(2, 1);
                 removeCard(humanLabels, 2);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 2 ");
             }
-            if (event.getSource() == humanLabels[3])
+            else if (event.getSource() == humanLabels[3])
             {
-                highCardGame.playCard(3, 1);
+                humanCard = highCardGame.playCard(3, 1);
                 removeCard(humanLabels, 3);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 3 ");
             }
-            if (event.getSource() == humanLabels[4])
+            else if (event.getSource() == humanLabels[4])
             {
-                highCardGame.playCard(4, 1);
+                humanCard = highCardGame.playCard(4, 1);
                 removeCard(humanLabels, 4);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 4 ");
             }
-            if (event.getSource() == humanLabels[5])
+            else if (event.getSource() == humanLabels[5])
             {
-                highCardGame.playCard(5, 1);
+                humanCard = highCardGame.playCard(5, 1);
                 removeCard(humanLabels, 5);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 5 ");
             }
-            if (event.getSource() == humanLabels[6])
+            else if (event.getSource() == humanLabels[6])
             {
-                highCardGame.playCard(6, 1);
+                humanCard = highCardGame.playCard(6, 1);
                 removeCard(humanLabels, 6);
                 removeCard(computerLabels, 0);
                 updatePanels();
                 //System.out.println(" Card 6 ");
+            }
+            
+            playedCardLabels[0] = new JLabel(GUICard.getIcon(computerCard));
+            playedCardLabels[1] = new JLabel(GUICard.getIcon(humanCard));
+            
+            //playerPlays[0].takeCard(computerCard);
+            //playerPlays[1].takeCard(humanCard);
+            numCardsPlayed++;
+            if (numCardsPlayed == NUM_CARDS_PER_HAND-1)
+            {
+                JOptionPane.showMessageDialog(null, (" Wins!"));
             }
         }
 
