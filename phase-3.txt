@@ -66,20 +66,21 @@ import javax.swing.JOptionPane;
 
 public class Assignment5
 {
-    static CardTable myCardTable;
-    static int NUM_CARDS_PER_HAND = 7;
-    static int NUM_PLAYERS = 2;
-    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
-    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
-    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
-    static CardGameFramework highCardGame;
+    static CardTable myCardTable; //Panels for cards
+    static int NUM_CARDS_PER_HAND = 7; //hand size for this game
+    static int NUM_PLAYERS = 2; //person v. computer
+    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND]; //computers cards
+    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND]; //humans cards
+    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS]; //dealt cards
+    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS]; //middle text
+    static CardGameFramework highCardGame; //game framework
     static boolean gameInPlay = false;
     static int roundsPlayed = 0;
     static Hand[] playerPlays = new Hand[NUM_PLAYERS];
     
     public static void main(String[] args)
     {
+        //loads all card icons of full deck
         GUICard.loadCardIcons();
         
         // Create CardGameFramework
@@ -94,6 +95,7 @@ public class Assignment5
         
         highCardGame.deal();
         
+        //sets the panels for GUI
         myCardTable
                 = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
         myCardTable.setSize(800, 600);
@@ -102,6 +104,7 @@ public class Assignment5
         
         myCardTable.setVisible(true);
         
+        //dialog box to confirm playing game
         int playOrNot = JOptionPane.showConfirmDialog(null, "Ready to play War?", "", JOptionPane.YES_NO_OPTION);
         if (playOrNot == JOptionPane.YES_OPTION)
         {
@@ -109,6 +112,7 @@ public class Assignment5
         }  
     }
     
+    //function to build panels, insert card icons and add click listeners
     public static void buildPanels()
     {
         int k;
@@ -116,6 +120,7 @@ public class Assignment5
         
         CardClickListener clickListener = new CardClickListener();
         
+        //inserts icons into player and human card panels
         for (k = 0; k < NUM_CARDS_PER_HAND; k++)
         {
             computerLabels[k] = new JLabel( GUICard.getBackCardIcon());
@@ -127,6 +132,7 @@ public class Assignment5
             humanLabels[k].addMouseListener(clickListener);   
         }
 
+        //inserts cards into middle section
         for (k = 0; k < NUM_PLAYERS; k++)
         {
             playedCardLabels[k] = new JLabel( GUICard.getBlankIcon(),
@@ -159,6 +165,7 @@ public class Assignment5
         
     }
     
+    //removes card from icons after card is dealt
     public static void removeCard( JLabel[] labels, int removed )
     {
         for (int i = removed; i < labels.length; i++)
@@ -174,6 +181,7 @@ public class Assignment5
         }
     }
     
+    //updates panels after card is dealt
     public static void updatePanels()
     {
         myCardTable.pnlComputerHand.removeAll();
@@ -188,11 +196,16 @@ public class Assignment5
         myCardTable.pnlHumanHand.revalidate();
     }
     
+    //clickListener to listen for click on any card icon
+    //implements MouseListener
     public static class CardClickListener implements MouseListener
     {
         Card humanCard;
         Card computerCard;
         
+        //if mouse is clicked, card is considered dealt
+        //computer now plays a card of its own
+        //function flow control determines which label has been clicked
         public void mouseClicked(MouseEvent event)
         {
             if (event.getSource() == humanLabels[0])
@@ -263,6 +276,8 @@ public class Assignment5
             myCardTable.pnlPlayArea.add(playLabelText[1]);
             myCardTable.pnlPlayArea.revalidate();
             
+            //determines winner of round based on value of cards dealt
+            //adds cards to the winner's array
             if (Card.valueAsInt(computerCard) > Card.valueAsInt(humanCard))
             {
                 JOptionPane.showMessageDialog(null, ("Computer Wins Round!"));
@@ -301,6 +316,7 @@ public class Assignment5
         public void mouseExited(MouseEvent e){}
     }
     
+    //algorithm to determine which card the computer plays
     public static int computersPlay(Hand hand)
     {
         hand.sortByVal();//sorts hand lowest to highest
@@ -385,6 +401,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//CardTable class creates creates a JFrame with three panels for:
+// user, computer and dealt cards
 public class CardTable extends JFrame
 {
     static int MAX_CARDS_PER_HAND = 56;
@@ -395,6 +413,8 @@ public class CardTable extends JFrame
 
     public JPanel pnlComputerHand, pnlHumanHand, pnlPlayArea;
 
+    //parameterized constructor that accepts title, numCardsPerHand, and players
+    //calls super constructor from JFrame class
     public CardTable(String title, int numCardsPerHand, int numPlayers)
     {
         super(title);
@@ -404,7 +424,7 @@ public class CardTable extends JFrame
             this.numPlayers = numPlayers;
         
         frameInit();
-        this.setLayout( new GridLayout(3, 1) );
+        this.setLayout( new GridLayout(3, 1) ); //Grid Layout of 3,1 to fit 3 panels
         
         pnlComputerHand = new JPanel( new GridLayout( 1, numCardsPerHand ) );
         pnlPlayArea = new JPanel( new GridLayout( 2, 2 ) );
@@ -415,11 +435,13 @@ public class CardTable extends JFrame
         this.add( pnlHumanHand );
     }
     
+    //accessor for numCardsPerHand
     public int getNumCardsPerHand()
     {
         return this.numCardsPerHand;
     }
     
+    //accessor for numPlayers
     public int getNumPlayers()
     {
         return this.numPlayers;
@@ -491,13 +513,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-
+//GUICard class loads the icons from the images source directory.
 public class GUICard
 {
     private static Icon[][] iconCards = new ImageIcon[14][4]; // 14 = A thru K + joker
-    private static Icon iconBack;
-    private static Icon blankIcon;
-    static boolean iconsLoaded = false;
+    private static Icon iconBack; //generic backCard for hidden Cards
+    private static Icon blankIcon; //generic blankCard for empty spots in hand
+    static boolean iconsLoaded = false; //flag to notify if iconCards has already been loaded
     
     static void loadCardIcons()
     {
@@ -545,16 +567,19 @@ public class GUICard
         return "";
     }
     
+    //returns a specific Icon for a desired card
     static public Icon getIcon(Card card)
     {        
         return iconCards[Card.valueAsInt(card)][Card.suitAsInt(card)];
     }
     
+    //returns iconBack card
     static public Icon getBackCardIcon()
     {
         return iconBack;
     }
     
+    //returns iconBlank card
     static public Icon getBlankIcon()
     {
         return blankIcon;
@@ -722,6 +747,8 @@ public class Card
         return false;
     }
     
+    //sorts array based on suit and then value
+    //bubble sort
     public static void arraySort( Card cards[], int arraySize )
     {
         Card temp;
@@ -748,6 +775,8 @@ public class Card
         }
     }
     
+    //returns the values from 'A' to 'K' as an int
+    //'A' is lowest, followed by '2', '3'...'K'
     public static int valueAsInt(Card card)
     {
         char testValue = card.value;
@@ -784,6 +813,7 @@ public class Card
         }
     }
     
+    //returns suit as an int from 0-3
     public static int suitAsInt(Card card)
     {
         if (card.suit == Suit.clubs)
@@ -796,6 +826,7 @@ public class Card
             return 3;
     }
     
+    //helper method for sort() to swap cards
     private static void swapCards( Card[] cards, int one, int two )
     {
         Card temp = cards[one];
@@ -803,6 +834,7 @@ public class Card
         cards[two] = temp;
     }
     
+    //sorts only by value and ignores suit
     public static void arraySortByValue(Card cards[], int arraySize)
     {
         Card temp;
@@ -881,7 +913,7 @@ package assignment5;
 
 public class Hand
 {
-
+    //data members
     public static int MAX_CARDS = 50;
     private Card[] myCards;
     private int numCards;
@@ -971,12 +1003,16 @@ public class Hand
         return card;
     }
     
+    //sort method that sorts by suit and then value
+    //calls Card arraySort() method
     public void sort()
     {
         if ( this.getNumCards() != 0 )
             Card.arraySort(myCards, numCards);
     }
     
+    //sort method that sorts hand by value only
+    //calls Card's sortByValue() method
     public void sortByVal()
     {
         if( this.getNumCards() != 0 )
@@ -1045,9 +1081,9 @@ import java.util.Random;
 
 public class Deck
 {
-
     public final int MAX_CARDS = 336; // max 6 decks of 56 cards
 
+    //private data members
     private static Card[] masterPack;
     private Card[] cards;
 
@@ -1219,6 +1255,7 @@ public class Deck
         }
     }
     
+    //adds a card to the deck and increments topCard
     public boolean addCard( Card card )
     {
         int count = 0;
@@ -1232,6 +1269,8 @@ public class Deck
         return true;
     }
     
+    //removes a card from the deck
+    //decrements topCard
     public boolean removeCard( Card card )
     {
         for (int i = topCard; i >= 0; i--)
@@ -1250,6 +1289,8 @@ public class Deck
         return false;
     }
     
+    //sorts the deck by suit and then value
+    //calls Card's arraySort() method
     public void sort()
     {
         
@@ -1257,6 +1298,7 @@ public class Deck
             Card.arraySort(cards, (numPacks*56));
     }
     
+    //returns number of cards in deck
     public int getNumCards()
     {
         int cardCount = 0;
