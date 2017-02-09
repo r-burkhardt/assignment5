@@ -301,55 +301,6 @@ public class Assignment5
         public void mouseExited(MouseEvent e){}
     }
     
-    public static class CardActionListener implements ActionListener
-    {
-
-        public void actionPerformed(ActionEvent event)
-        {
-            //System.out.println(event.getActionCommand());
-            switch (event.getActionCommand())
-            {
-                case "0":
-                    highCardGame.playCard(0, 1);
-                    buildPanels();
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 0");
-                    break;
-                case "1":
-                    highCardGame.playCard(1, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 1");
-                    break;
-                case "2":
-                    highCardGame.playCard(2, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 2");
-                    break;
-                case "3":
-                    highCardGame.playCard(3, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 3");
-                    break;
-                case "4":
-                    highCardGame.playCard(4, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 4");
-                    break;
-                case "5":
-                    highCardGame.playCard(5, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 5");
-                    break;
-                case "6":
-                    highCardGame.playCard(6, 1);
-                    myCardTable.repaint();
-                    //System.out.println("Play Card 6");
-                    break;
-            }
-        }
-        
-    }
-    
     public static int computersPlay(Hand hand)
     {
         hand.sortByVal();//sorts hand lowest to highest
